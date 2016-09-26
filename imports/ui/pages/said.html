@@ -1,0 +1,19 @@
+<template name="said">
+    <div class="ui center aligned container">
+        {{>sayitoHeader}}
+
+        <div class="sayito messages">
+            {{#each messages}}
+                <span class="message-text">
+                    <span>
+                        {{>messageText}}
+                    </span>
+
+                    <span style="margin-left: 15px">
+                        {{>messageThumbsup}}
+                    </span>
+                </span>
+            {{/each}}
+        </div>
+    </div>
+</template>

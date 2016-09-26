@@ -1,0 +1,25 @@
+<template name="home">
+    <div class="ui center aligned container">
+        {{>sayitoHeader}}
+
+        <form class="ui sayito form">
+            <div class="field">
+                <input class="sayito-input" type="text">
+                <div id="sayito-input-label" class="ui pointing label" style="display: none;">
+                </div>
+            </div>
+        </form>
+
+        <div class="sayito messages">
+            {{#AnimateWithVelocity}}
+
+                {{#each messages}}
+                    {{> message}}
+                {{else}}
+                    {{_ 'zero_messages'}}
+                {{/each}}
+
+            {{/AnimateWithVelocity}}
+        </div>
+    </div>
+</template>

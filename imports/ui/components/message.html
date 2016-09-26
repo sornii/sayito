@@ -1,0 +1,21 @@
+<template name="message">
+    <p data-animate data-property="opacity" data-duration="250" data-from-value="0" data-to-value="1"
+       class="sayito message">
+
+        {{renderLink}}
+
+        <span style="margin-right: 15px">
+            <a href="/said/{{_id}}">
+                <i class="linkify icon"></i>
+            </a>
+        </span>
+
+        <span>
+            {{>messageText}}
+        </span>
+
+        <span style="margin-left: 15px">
+            {{>messageThumbsup}}
+        </span>
+    </p>
+</template>
