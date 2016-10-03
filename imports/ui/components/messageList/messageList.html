@@ -1,13 +1,13 @@
 <template name="messageList">
     <div class="sayito messages {{customClass}}">
-        {{#AnimateWithVelocity}}
+        {{#momentum plugin='fade'}}
 
             {{#each message in messages}}
-                {{> messageItem message=message renderLink=renderLink renderThumbsup=renderThumbsup}}
-            {{else}}
-                {{_ 'zero_messages'}}
+                <p class="sayito message">
+                    {{> messageItem message=message renderLink=renderLink renderThumbsup=renderThumbsup}}
+                </p>
             {{/each}}
 
-        {{/AnimateWithVelocity}}
+        {{/momentum}}
     </div>
 </template>

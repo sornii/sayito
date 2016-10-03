@@ -42,7 +42,6 @@ email@1.1.17
 es5-shim@4.6.14
 fastclick@1.0.12
 flemay:less-autoprefixer@1.2.0
-frozeman:animation-helper-velocity@0.1.8
 geojson-utils@1.0.9
 google@1.1.13
 ground:db@0.3.15
@@ -52,10 +51,7 @@ ground:minimax@1.1.3
 ground:servertime@0.0.3
 ground:store@0.1.2
 ground:util@0.1.17
-gwendall:jquery-animation-callback@0.1.2
 gwendall:simple-schema-i18n@0.2.3
-gwendall:template-animations@0.2.2
-gwendall:ui-hooks@0.1.7
 hot-code-push@1.0.4
 html-tools@1.0.11
 htmljs@1.0.11
@@ -86,7 +82,6 @@ modules-runtime@0.7.6
 mongo@1.1.12
 mongo-id@1.0.5
 mongo-livedata@1.0.12
-mrt:underscore-string-latest@2.3.3
 npm-bcrypt@0.9.1
 npm-mongo@1.5.49
 oauth@1.1.11
@@ -111,7 +106,6 @@ semantic:ui@2.2.1
 semantic:ui-data@2.2.4
 service-configuration@1.0.10
 session@1.1.6
-sewdn:velocityjs@0.8.0
 sha@1.0.8
 shell-server@0.2.1
 softwarerero:accounts-t9n@1.3.5
@@ -133,5 +127,4 @@ useraccounts:core@1.14.2
 useraccounts:semantic-ui@1.14.2
 webapp@1.3.11
 webapp-hashing@1.0.9
-webtempest:animate@0.1.9
 zimme:active-route@2.3.2
