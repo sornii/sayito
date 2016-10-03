@@ -2,9 +2,17 @@ import {FlowRouter} from 'meteor/kadira:flow-router';
 import {BlazeLayout} from 'meteor/kadira:blaze-layout';
 
 import '../../ui/layouts/app-body.js';
-import '../../ui/pages/home.js';
-import '../../ui/pages/said.js';
-import '../../ui/components/message.js';
+
+//pages
+import '../../ui/pages/home/home.js';
+import '../../ui/pages/said/said.js';
+
+//componentes
+import '../../ui/components/messageItem/messageItem.js';
+import '../../ui/components/messageText/messageText.js';
+import '../../ui/components/messageThumbsup/messageThumbsup.js';
+import '../../ui/components/sayitoHeader/sayitoHeader.js';
+
 import 'meteor/percolate:momentum';
 
 FlowRouter.route('/', {

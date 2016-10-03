@@ -24,11 +24,3 @@ Meteor.publish('messagesByTag', function (tag) {
 Meteor.publish('messagesByIds', function (ids) {
     return Messages.find({_id: {$in: ids}});
 });
-
-Meteor.publish('messagesThumbsup', function (idsThumbsup) {
-    return Messages.find({_id: {$in: idsThumbsup}});
-});
-
-Meteor.publish('messagesThumbsdown', function (idsThumbsdown) {
-    return Messages.find({_id: {$in: idsThumbsdown}});
-});
