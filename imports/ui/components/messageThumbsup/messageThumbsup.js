@@ -1,22 +1,25 @@
 import {Template} from "meteor/templating";
 import {FlowRouter} from "meteor/kadira:flow-router";
-import {removeThumbsup, thumbsup} from "../../../api/messages/methods.js";
-import {Thumbsup} from "../../../api/thumbsup/thumbsup.js";
-import "./messageThumbsup.html";
+import {removeThumbsup, thumbsup, hasThumbsup} from "../../../api/messages/methods.js";
 
-function hasThumbsup(id) {
-    return Thumbsup.findOne({_id: id}) != null;
-}
+import "./messageThumbsup.html";
 
 Template.messageThumbsup.helpers({
     thumbsupClass () {
 
-        const id = this._id;
+        const id = this.message._id;
 
-        if (hasThumbsup(id)) {
+        if (hasThumbsup.call({id})) {
             return '';
         }
         return 'outline';
+    },
+
+    thumbsupCount () {
+        if (this.message.thumbsup) {
+            return this.message.thumbsup.length;
+        }
+        return 0;
     }
 });
 
@@ -24,13 +27,11 @@ Template.messageThumbsup.events({
     'click .thumbs.up' (event) {
         event.preventDefault();
 
-        const id = this._id;
+        const id = this.message._id;
 
-        if (hasThumbsup(id)) {
-            Thumbsup.remove({_id: id});
+        if (hasThumbsup.call({id})) {
             removeThumbsup.call({id});
         } else {
-            Thumbsup.insert(this);
             thumbsup.call({id});
         }
     }

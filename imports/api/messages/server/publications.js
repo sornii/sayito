@@ -2,8 +2,13 @@ import {Meteor} from "meteor/meteor";
 import {Messages} from "../messages.js";
 import {Tags} from "../../tags/tags.js";
 
+const commonFilter = {
+    limit: 10, sort: {bumpAt: -1}
+};
+
 Meteor.publish('messages', function () {
-    return Messages.find({}, {limit: 10, sort: {createdAt: -1}});
+    Meteor._sleepForMs(2000);
+    return Messages.find({}, commonFilter);
 });
 
 Meteor.publish('messagesByTag', function (tag) {
@@ -18,7 +23,7 @@ Meteor.publish('messagesByTag', function (tag) {
         tagToBeUsed = Tags.insert({text: tagText});
     }
 
-    return Messages.find({tags: tagToBeUsed._id}, {limit: 10, sort: {createdAt: -1}});
+    return Messages.find({tags: tagToBeUsed._id}, commonFilter);
 });
 
 Meteor.publish('messagesByIds', function (ids) {

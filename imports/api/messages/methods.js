@@ -11,6 +11,10 @@ export const insert = new ValidatedMethod({
     }).validator(),
     run({text}) {
 
+        if (!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
         const regex = /\B#(\w*[A-Za-z_]+\w*)/g;
 
         const tags = [];
@@ -33,21 +37,39 @@ export const insert = new ValidatedMethod({
             throw new Meteor.Error('messages.insert.hasNoTags', TAPi18n.__('messages_no_tags'));
         }
 
-        return Messages.insert({text, tags, createdAt: new Date()});
+        var date = new Date();
+        return Messages.insert({text, tags, createdAt: date, bumpAt: date, userId: this.userId});
+    }
+});
+
+export const hasThumbsup = new ValidatedMethod({
+    name: 'messages.hasThumbsup',
+    validate: new SimpleSchema({
+        id: {type: String, regEx: SimpleSchema.RegEx.Id}
+    }).validator(),
+    run({id}) {
+        if (!this.userId) {
+            throw new Meteor.Error('not-authorized');
+        }
+
+        return Messages.find({_id: id, thumbsup: this.userId}, {limit: 1}).count() == 1;
     }
 });
 
 export const thumbsup = new ValidatedMethod({
     name: 'messages.thumbsup',
     validate: new SimpleSchema({
-        id: {type: String}
+        id: {type: String, regEx: SimpleSchema.RegEx.Id}
     }).validator(),
     run({id}) {
         Messages.update({
             _id: id
         }, {
-            $inc: {
-                thumbsup: 1
+            $addToSet: {
+                thumbsup: this.userId
+            },
+            $set: {
+                bumpAt: new Date()
             }
         });
     }
@@ -62,8 +84,8 @@ export const removeThumbsup = new ValidatedMethod({
         Messages.update({
             _id: id
         }, {
-            $inc: {
-                thumbsup: -1
+            $pull: {
+                thumbsup: this.userId
             }
         });
     }

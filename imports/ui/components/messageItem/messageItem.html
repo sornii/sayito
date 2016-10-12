@@ -1,19 +1,21 @@
 <template name="messageItem">
-    {{#if renderLink}}
-        <span style="margin-right: 15px">
-            <a href="/said/{{message._id}}">
-                <i class="linkify icon"></i>
-            </a>
-        </span>
-    {{/if}}
-
-    <span>
-        {{>messageText text=message.text}}
-    </span>
-
-    {{#if renderThumbsup}}
-        <span style="margin-left: 15px">
-            {{>messageThumbsup _id=message._id thumbsup=message.thumbsup}}
-        </span>
-    {{/if}}
+    <div class="label">
+        <img src="http://api.adorable.io/avatar/200/{{message.userId}}.png" alt="joe">
+    </div>
+    <div class="content">
+        <div class="summary">
+            <a>{{message.userId}}</a>
+        </div>
+        <div class="date">
+            {{howLong}}
+        </div>
+        <div class="extra text">
+            {{> messageText text=message.text}}
+        </div>
+        <div class="meta">
+            {{#if renderThumbsup}}
+                {{> messageThumbsup}}
+            {{/if}}
+        </div>
+    </div>
 </template>

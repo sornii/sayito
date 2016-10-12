@@ -3,13 +3,12 @@ import {FlowRouter} from "meteor/kadira:flow-router";
 import {ActiveRoute} from "meteor/zimme:active-route";
 import {_} from "meteor/underscore";
 import {$} from "meteor/jquery";
-import {Thumbsup} from "../../../api/thumbsup/thumbsup.js";
 import {insert} from "../../../api/messages/methods.js";
 import "../../components/messageList/messageList.js";
+import "../../components/loading/loading.js";
 import "./home.html";
 
 Template.home.onCreated(function homeOnCreated() {
-
     this.autorun(() => {
 
         const tagRoute = ActiveRoute.name('tag');
@@ -18,9 +17,7 @@ Template.home.onCreated(function homeOnCreated() {
         if (tagRoute) {
             this.subscribe('messagesByTag', FlowRouter.getParam('tag'));
         } else if (thumbsupRoute) {
-            const ids = _.map(Thumbsup.find({}).fetch(), function (o) {
-                return o._id;
-            });
+            const ids = [];
             this.subscribe('messagesByIds', ids);
         } else {
             this.subscribe('messages');

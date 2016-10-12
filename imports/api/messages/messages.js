@@ -10,11 +10,13 @@ Messages.deny({
     remove() { return true; }
 });
 
-//todo: createdAt
 const MessageSchema = new SimpleSchema({
     createdAt: {
         type: Date,
         denyUpdate: true
+    },
+    bumpAt: {
+        type: Date
     },
     text: {
         type: String,
@@ -25,8 +27,13 @@ const MessageSchema = new SimpleSchema({
         regEx: SimpleSchema.RegEx.Id
     },
     thumbsup: {
-        type: Number,
-        defaultValue: 0
+        type: [String],
+        regEx: SimpleSchema.RegEx.Id,
+        optional: true
+    },
+    userId: {
+        type: String,
+        regEx: SimpleSchema.RegEx.Id
     }
 });
 

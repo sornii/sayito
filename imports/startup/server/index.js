@@ -1,2 +1,3 @@
 import './fixtures.js';
-import './api';
+import './api.js';
+import './annon.js';

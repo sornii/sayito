@@ -1,14 +1,8 @@
 <template name="App_body">
     <div class="ui center aligned container">
         {{> sayitoHeader}}
-
-        {{#momentum plugin='fade'}}
-            {{#if Template.subscriptionsReady}}
-                {{> Template.dynamic template=content}}
-            {{else}}
-                <p>Carregando...</p>
-            {{/if}}
+        {{#momentum plugin='instaRemoveFadeIn'}}
+            {{> Template.dynamic template=content}}
         {{/momentum}}
-
     </div>
 </template>

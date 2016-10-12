@@ -28,8 +28,8 @@ percolate:momentum
 dburles:collection-helpers
 reywood:publish-composite
 tap:i18n
-accounts-ui@1.1.9
-accounts-password@1.3.0
+accounts-ui
+accounts-password
 accounts-google@1.0.10
 useraccounts:semantic-ui
 meteorhacks:kadira
@@ -38,3 +38,7 @@ ground:db
 underscore@1.0.9
 gwendall:simple-schema-i18n
 shell-server
+random
+accounts-base
+momentjs:moment
+rzymek:moment-locale-pt-br

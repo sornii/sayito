@@ -1,3 +1,7 @@
 <template name="said">
-    {{>messageList renderLink=false renderThumbsup=true}}
+    {{#if Template.subscriptionsReady}}
+        {{> messageText text=messageSaid.text}}
+    {{else}}
+        {{> loading}}
+    {{/if}}
 </template>

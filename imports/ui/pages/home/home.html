@@ -7,5 +7,18 @@
         </div>
     </form>
 
-    {{>messageList renderLink=true renderThumbsup=true}}
+    {{#if Template.subscriptionsReady}}
+        {{> messageList renderLink=true renderThumbsup=true}}
+    {{else}}
+        <div class="sayito messages">
+            <p class="sayito message dummy">
+            </p>
+            <p class="sayito message dummy">
+            </p>
+            <p class="sayito message dummy">
+            </p>
+        </div>
+
+        {{> loading}}
+    {{/if}}
 </template>

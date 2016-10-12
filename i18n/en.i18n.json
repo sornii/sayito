@@ -3,5 +3,6 @@
   "tags": "Tags",
   "sub_header": "An anonymous way to say it",
   "messages_no_tags": "The message must have hashtags",
-  "zero_messages": "No one got real, be the first!"
+  "zero_messages": "No one got real, be the first!",
+  "loading": "Loading"
 }

@@ -1,13 +1,9 @@
 <template name="messageList">
-    <div class="sayito messages {{customClass}}">
-        {{#momentum plugin='fade'}}
-
-            {{#each message in messages}}
-                <p class="sayito message">
-                    {{> messageItem message=message renderLink=renderLink renderThumbsup=renderThumbsup}}
-                </p>
-            {{/each}}
-
-        {{/momentum}}
+    <div class="ui feed sayito messages">
+        {{#each message in messages}}
+            <div class="event">
+                {{> messageItem message=message renderLink=renderLink renderThumbsup=renderThumbsup}}
+            </div>
+        {{/each}}
     </div>
 </template>

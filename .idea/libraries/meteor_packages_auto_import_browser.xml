@@ -229,7 +229,9 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_core/1.14.2/web.browser/lib/client.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/sha/1.0.8/web.browser/sha256.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_core/1.14.2/web.browser/lib/utils.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/rzymek_moment-locale-pt-br/2.14.1/web.browser/locale.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/service-configuration/1.0.10/web.browser/service_configuration_common.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/rzymek_moment-locale-pt-br/2.14.1/web.browser/client.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_core/1.14.2/web.browser/lib/core.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/reactive-var/1.0.10/web.browser/reactive-var.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/rate-limit/1.0.5/web.browser/rate-limit.js" />
@@ -318,7 +320,9 @@
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/base64/1.0.9/web.browser/base64.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/mdg_validated-method/1.1.0/web.browser/validated-method-tests.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_pwd_link.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/momentjs_moment/2.15.1/web.browser/meteor/export.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_error.js" />
+        <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/momentjs_moment/2.15.1/web.browser/moment.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_form.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_oauth.js" />
         <item url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_nav_button.js" />
@@ -590,7 +594,9 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_core/1.14.2/web.browser/lib/client.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/sha/1.0.8/web.browser/sha256.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_core/1.14.2/web.browser/lib/utils.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/rzymek_moment-locale-pt-br/2.14.1/web.browser/locale.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/service-configuration/1.0.10/web.browser/service_configuration_common.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/rzymek_moment-locale-pt-br/2.14.1/web.browser/client.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_core/1.14.2/web.browser/lib/core.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/reactive-var/1.0.10/web.browser/reactive-var.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/rate-limit/1.0.5/web.browser/rate-limit.js" />
@@ -679,7 +685,9 @@
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/base64/1.0.9/web.browser/base64.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/mdg_validated-method/1.1.0/web.browser/validated-method-tests.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_pwd_link.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/momentjs_moment/2.15.1/web.browser/meteor/export.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_error.js" />
+      <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/momentjs_moment/2.15.1/web.browser/moment.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_form.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_oauth.js" />
       <root url="file://$USER_HOME$/AppData/Local/.meteor/packages/useraccounts_semantic-ui/1.14.2/web.browser/lib/at_nav_button.js" />
