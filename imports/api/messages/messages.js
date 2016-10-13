@@ -37,4 +37,13 @@ const MessageSchema = new SimpleSchema({
     }
 });
 
+Messages.helpers({
+    thumbsupCount () {
+        if (this.thumbsup) {
+            return this.thumbsup.length;
+        }
+        return 0;
+    }
+});
+
 Messages.attachSchema(MessageSchema);

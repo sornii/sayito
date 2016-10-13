@@ -19,7 +19,7 @@ Meteor.startup(function () {
     TAPi18n.setLanguage(locale);
     moment.locale(locale);
 
-    Momentum.registerPlugin('instaRemoveFadeIn', function (options) {
+    Momentum.registerPlugin('instaRemoveFadeIn', function () {
         return {
             insertElement: function (node, next) {
                 const $node = $(node);
@@ -28,7 +28,6 @@ Meteor.startup(function () {
                     .velocity('fadeIn');
             },
             moveElement: function (node, next) {
-                this.removeElement(node);
                 this.insertElement(node, next);
             },
             removeElement: function (node) {

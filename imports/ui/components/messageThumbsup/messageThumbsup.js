@@ -6,20 +6,13 @@ import "./messageThumbsup.html";
 
 Template.messageThumbsup.helpers({
     thumbsupClass () {
-
         const id = this.message._id;
 
         if (hasThumbsup.call({id})) {
             return '';
         }
-        return 'outline';
-    },
 
-    thumbsupCount () {
-        if (this.message.thumbsup) {
-            return this.message.thumbsup.length;
-        }
-        return 0;
+        return 'outline';
     }
 });
 

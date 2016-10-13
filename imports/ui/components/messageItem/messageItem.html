@@ -1,6 +1,6 @@
 <template name="messageItem">
     <div class="label">
-        <img src="http://api.adorable.io/avatar/200/{{message.userId}}.png" alt="joe">
+        <img src="http://api.adorable.io/avatar/200/{{message.userId}}.png" alt="avatar">
     </div>
     <div class="content">
         <div class="summary">
@@ -13,9 +13,7 @@
             {{> messageText text=message.text}}
         </div>
         <div class="meta">
-            {{#if renderThumbsup}}
-                {{> messageThumbsup}}
-            {{/if}}
+            {{> messageThumbsup}}
         </div>
     </div>
 </template>

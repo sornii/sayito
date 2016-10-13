@@ -10,7 +10,6 @@ export const insert = new ValidatedMethod({
         text: {type: String, max: 140}
     }).validator(),
     run({text}) {
-
         if (!this.userId) {
             throw new Meteor.Error('not-authorized');
         }
@@ -62,6 +61,10 @@ export const thumbsup = new ValidatedMethod({
         id: {type: String, regEx: SimpleSchema.RegEx.Id}
     }).validator(),
     run({id}) {
+        if (hasThumbsup.call({id})) {
+            throw new Meteor.Error('not-authorized');
+        }
+
         Messages.update({
             _id: id
         }, {
@@ -81,6 +84,10 @@ export const removeThumbsup = new ValidatedMethod({
         id: {type: String}
     }).validator(),
     run({id}) {
+        if (!hasThumbsup.call({id})) {
+            throw new Meteor.Error('not-authorized');
+        }
+
         Messages.update({
             _id: id
         }, {
