@@ -6,7 +6,7 @@ import "./messageList.html";
 Template.messageList.helpers({
 
     messages () {
-        return Messages.find({}, {sort: {bumpAt: -1}});
+        return Messages.find({});
     }
 
 });

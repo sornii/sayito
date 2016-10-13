@@ -3,7 +3,7 @@ import {Messages} from "../messages.js";
 import {Tags} from "../../tags/tags.js";
 
 const commonFilter = {
-    limit: 10, sort: {bumpAt: -1}
+    limit: 10
 };
 
 Meteor.publish('messages', function () {
