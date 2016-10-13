@@ -4,6 +4,7 @@ import {ActiveRoute} from "meteor/zimme:active-route";
 import {_} from "meteor/underscore";
 import {$} from "meteor/jquery";
 import {insert} from "../../../api/messages/methods.js";
+import {tagsTrending} from "../../../api/tags/methods.js";
 import "../../components/messageList/messageList.js";
 import "../../components/loading/loading.js";
 import "./home.html";
@@ -22,7 +23,10 @@ Template.home.onCreated(function homeOnCreated() {
         } else {
             this.subscribe('messages');
         }
+
+
     });
+    tagsTrending.call({});
 
 });
 

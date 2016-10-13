@@ -5,15 +5,19 @@ import {Template} from "meteor/templating";
 import {Tracker} from "meteor/tracker";
 import {moment} from "meteor/momentjs:moment";
 
-const timeDep = new Tracker.Dependency;
+Template.messageItem.onCreated(function messageItemOnCreated() {
 
-setTimeout(() => {
-    timeDep.changed();
-}, 1000);
+    this.howLong = new ReactiveVar();
+
+    //TODO: TESTES PARA ATUALIZAR A MENSAGEM A CADA SEGUNDO/MINUTO
+
+    this.autorun(() => {
+        this.howLong.set(moment(this.data.message.createdAt).fromNow());
+    });
+});
 
 Template.messageItem.helpers({
     howLong () {
-        timeDep.depend();
-        return moment(this.message.createdAt).fromNow();
+        return Template.instance().howLong.get();
     }
 });

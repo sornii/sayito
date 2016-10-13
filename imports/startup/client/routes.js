@@ -34,3 +34,8 @@ FlowRouter.route('/thumbsup', {
     name: 'thumbsup',
     action: () => BlazeLayout.render('App_body', {content: 'home'}),
 });
+
+FlowRouter.route('/trending', {
+    name: 'trending',
+    action: () => BlazeLayout.render('App_body', {content: 'home'})
+});

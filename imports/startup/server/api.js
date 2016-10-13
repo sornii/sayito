@@ -16,3 +16,5 @@ import '../../api/messages/server/publications.js';
 
 // Tags
 import '../../api/tags/tags.js';
+import '../../api/tags/methods.js';
+import '../../api/tags/server/publications.js';
