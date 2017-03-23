@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { TAPi18n } from 'meteor/tap:i18n';
+import { CryptoJS } from 'meteor/jparker:crypto-md5';
 
 export const Messages = new Mongo.Collection('Messages');
 
@@ -30,10 +31,6 @@ const MessageSchema = new SimpleSchema({
         type: [String],
         regEx: SimpleSchema.RegEx.Id,
         optional: true
-    },
-    userId: {
-        type: String,
-        regEx: SimpleSchema.RegEx.Id
     }
 });
 
@@ -43,6 +40,9 @@ Messages.helpers({
             return this.thumbsup.length;
         }
         return 0;
+    },
+    hash() {
+        return CryptoJS.MD5(this.createdAt);
     }
 });
 
