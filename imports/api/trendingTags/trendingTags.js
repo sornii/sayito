@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Tags } from "../tags/tags.js";
 
 export const TrendingTags = new Mongo.Collection('TrendingTags');
 
@@ -16,6 +17,12 @@ export const TrendingTagsSchema = new SimpleSchema({
     tag: {
         type: String,
         regEx: SimpleSchema.RegEx.Id
+    }
+});
+
+TrendingTags.helpers({
+    hashTag () {
+        return Tags.findOne({_id: this.tag});
     }
 });
 

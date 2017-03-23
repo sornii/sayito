@@ -3,13 +3,15 @@ import {FlowRouter} from "meteor/kadira:flow-router";
 import {ActiveRoute} from "meteor/zimme:active-route";
 import {_} from "meteor/underscore";
 import {$} from "meteor/jquery";
+import {TrendingTags} from "../../../api/trendingTags/trendingTags.js";
+import {commonFilter as trendingTagsFilter} from "../../../api/trendingTags/filters.js";
 import {insert} from "../../../api/messages/methods.js";
-import {tagsTrending} from "../../../api/tags/methods.js";
 import "../../components/messageList/messageList.js";
 import "../../components/loading/loading.js";
 import "./home.html";
 
 Template.home.onCreated(function homeOnCreated() {
+
     this.autorun(() => {
 
         const tagRoute = ActiveRoute.name('tag');
@@ -24,9 +26,15 @@ Template.home.onCreated(function homeOnCreated() {
             this.subscribe('messages');
         }
 
-    });
-    tagsTrending.call({});
+        this.subscribe('ranking');
 
+    });
+});
+
+Template.home.helpers({
+    ranking() {
+        return TrendingTags.find({}, trendingTagsFilter);
+    }
 });
 
 Template.home.events({

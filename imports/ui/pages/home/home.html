@@ -1,10 +1,9 @@
 <template name="home">
     <form class="ui sayito form">
-        <div class="field">
-            <input class="sayito-input" type="text">
-            <div id="sayito-input-label" class="ui pointing label" style="display: none;">
-            </div>
+        <div class="ui input" style="width: 100%">
+            <input class="sayito-input" type="text" placeholder="Bora falar mal, ou bem!">
         </div>
+        <div id="sayito-input-label" class="ui pointing label" style="display: none;"></div>
     </form>
 
     {{#if Template.subscriptionsReady}}
