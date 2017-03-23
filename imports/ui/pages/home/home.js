@@ -10,6 +10,12 @@ import "../../components/messageList/messageList.js";
 import "../../components/loading/loading.js";
 import "./home.html";
 
+Template.home.onRendered(function homeOnRendered() {
+    $(document).ready(() => {
+        $('.ui.dropdown').dropdown();
+    });
+});
+
 Template.home.onCreated(function homeOnCreated() {
 
     this.autorun(() => {
