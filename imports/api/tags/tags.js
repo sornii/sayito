@@ -18,9 +18,9 @@ export const TagSchema = new SimpleSchema({
 });
 
 Tags.helpers({
-    link () {
+    link (classes) {
         const param = this.text.substring(1, this.text.length);
-        return `<a href="/hashtag/${param}">${this.text}</a>`;
+        return `<a class="${classes}" href="/hashtag/${param}">${this.text}</a>`;
     }
 });
 

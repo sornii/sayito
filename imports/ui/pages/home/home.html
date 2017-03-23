@@ -1,7 +1,22 @@
 <template name="home">
+    <script>
+        $(document).ready(() => {
+            $('.ui.dropdown').dropdown();
+        });
+    </script>
+
     <form class="ui sayito form">
-        <div class="ui input" style="width: 100%">
+        <div class="ui fluid input right action">
             <input class="sayito-input" type="text" placeholder="Bora falar mal, ou bem!">
+            <div class="ui button pointing dropdown top right">
+                {{_ 'trending'}}
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    {{#each rank in ranking}}
+                        {{{rank.hashTag.link 'item'}}}
+                    {{/each}}
+                </div>
+            </div>
         </div>
         <div id="sayito-input-label" class="ui pointing label" style="display: none;"></div>
     </form>

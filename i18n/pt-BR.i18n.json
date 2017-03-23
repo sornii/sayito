@@ -4,5 +4,6 @@
   "sub_header": "Uma maneira anônima de falar",
   "messages_no_tags": "A mensagem precisa de uma hashtag",
   "zero_messages": "Ninguém mandou uma verdade ainda, seja o primeiro!",
-  "loading": "Carregando"
+  "loading": "Carregando",
+  "trending": "Populares"
 }
