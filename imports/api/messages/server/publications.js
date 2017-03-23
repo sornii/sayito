@@ -4,8 +4,19 @@ import {Tags} from "../../tags/tags.js";
 
 import {commonFilter} from "../filters";
 
-Meteor.publish('messages', function () {
-    return Messages.find({}, commonFilter);
+Meteor.publishComposite('messages', function () {
+    return {
+        find() {
+            return Messages.find({}, commonFilter);
+        },
+        children: [
+            {
+                find(message) {
+                    return Tags.find({_id: {$in: message.tags}});
+                }
+            }
+        ]
+    };
 });
 
 Meteor.publish('messagesByTag', function (tag) {
@@ -25,17 +36,4 @@ Meteor.publish('messagesByTag', function (tag) {
 
 Meteor.publish('messagesByIds', function (ids) {
     return Messages.find({_id: {$in: ids}});
-});
-
-
-//TODO: TESTES PARA TRENDING DE LIKE
-
-Meteor.publish('messagesTrendingLike', function () {
-
-});
-
-//TODO: TESTES PARA TRENDING DE TAG
-
-Meteor.publish('messagesTrendingTags', function () {
-
 });

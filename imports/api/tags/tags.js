@@ -17,4 +17,11 @@ export const TagSchema = new SimpleSchema({
     }
 });
 
+Tags.helpers({
+    link () {
+        const param = this.text.substring(1, this.text.length);
+        return `<a href="/hashtagh/${param}">${this.text}</a>`;
+    }
+});
+
 Tags.attachSchema(TagSchema);

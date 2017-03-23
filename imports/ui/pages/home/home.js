@@ -24,7 +24,6 @@ Template.home.onCreated(function homeOnCreated() {
             this.subscribe('messages');
         }
 
-
     });
     tagsTrending.call({});
 

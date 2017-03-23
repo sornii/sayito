@@ -3,6 +3,8 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { TAPi18n } from 'meteor/tap:i18n';
 import { CryptoJS } from 'meteor/jparker:crypto-md5';
 
+import { Tags } from '../tags/tags.js';
+
 export const Messages = new Mongo.Collection('Messages');
 
 Messages.deny({
@@ -43,6 +45,17 @@ Messages.helpers({
             return this.thumbsup.length;
         }
         return 0;
+    },
+    hashTags() {
+        return Tags.find({_id: {$in: this.tags}});
+    },
+    formattedText() {
+        const hashTags = this.hashTags().fetch();
+        let finalText = this.text;
+        hashTags.forEach(function (tag) {
+            finalText = finalText.replace(tag.text, tag.link());
+        });
+        return finalText;
     }
 });
 

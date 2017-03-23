@@ -1,5 +1,6 @@
-import { Meteor } from 'meteor/meteor';
+import {Meteor} from 'meteor/meteor';
+import {SyncedCron} from 'meteor/percolate:synced-cron';
 
 Meteor.startup(() => {
-    //todo: maybe something
+    SyncedCron.start();
 });

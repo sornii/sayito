@@ -9,7 +9,6 @@ import '../../ui/pages/said/said.js';
 
 //componentes
 import '../../ui/components/messageItem/messageItem.js';
-import '../../ui/components/messageText/messageText.js';
 import '../../ui/components/messageThumbsup/messageThumbsup.js';
 import '../../ui/components/sayitoHeader/sayitoHeader.js';
 

@@ -1,6 +1,6 @@
 <template name="said">
     {{#if Template.subscriptionsReady}}
-        {{> messageText text=messageSaid.text}}
+        {{> messageSaid.formattedText}}
     {{else}}
         {{> loading}}
     {{/if}}
