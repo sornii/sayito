@@ -56,6 +56,9 @@ Messages.helpers({
             finalText = finalText.replace(tag.text, tag.link());
         });
         return finalText;
+    },
+    link() {
+        return `<a href="/said/${this.hash}">${this.hash}</a>`;
     }
 });
 

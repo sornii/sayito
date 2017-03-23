@@ -28,13 +28,3 @@ FlowRouter.route('/said/:id', {
     name: 'said',
     action: () => BlazeLayout.render('App_body', {content: 'said'}),
 });
-
-FlowRouter.route('/thumbsup', {
-    name: 'thumbsup',
-    action: () => BlazeLayout.render('App_body', {content: 'home'}),
-});
-
-FlowRouter.route('/trending', {
-    name: 'trending',
-    action: () => BlazeLayout.render('App_body', {content: 'home'})
-});

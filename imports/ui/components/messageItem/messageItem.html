@@ -4,11 +4,14 @@
     </div>
     <div class="content">
         <div class="summary">
-            <a style="font-weight: 300">{{message.hash}}</a>
+            <a style="font-weight: 300">
+                {{{message.link}}}
+            </a>
+            <div class="date">
+                {{howLong}}
+            </div>
         </div>
-        <div class="date">
-            {{howLong}}
-        </div>
+
         <div class="extra text">
             {{{message.formattedText}}}
         </div>

@@ -15,13 +15,9 @@ Template.home.onCreated(function homeOnCreated() {
     this.autorun(() => {
 
         const tagRoute = ActiveRoute.name('tag');
-        const thumbsupRoute = ActiveRoute.name('thumbsup');
 
         if (tagRoute) {
             this.subscribe('messagesByTag', FlowRouter.getParam('tag'));
-        } else if (thumbsupRoute) {
-            const ids = [];
-            this.subscribe('messagesByIds', ids);
         } else {
             this.subscribe('messages');
         }
