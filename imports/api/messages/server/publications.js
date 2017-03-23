@@ -19,21 +19,43 @@ Meteor.publishComposite('messages', function () {
     };
 });
 
-Meteor.publish('messagesByTag', function (tag) {
-    const tagText = '#' + tag;
-    const tagFound = Tags.findOne({text: tagText});
+Meteor.publishComposite('messagesByTag', function (tag) {
+    return {
+        find() {
+            const tagText = '#' + tag;
+            const tagFound = Tags.findOne({text: tagText});
 
-    let tagToBeUsed;
+            let tagToBeUsed;
 
-    if (tagFound) {
-        tagToBeUsed = tagFound;
-    } else {
-        tagToBeUsed = Tags.insert({text: tagText});
-    }
+            if (tagFound) {
+                tagToBeUsed = tagFound;
+            } else {
+                tagToBeUsed = Tags.insert({text: tagText});
+            }
 
-    return Messages.find({tags: tagToBeUsed._id}, commonFilter);
+            return Messages.find({tags: tagToBeUsed._id}, commonFilter);
+        },
+        children: [
+            {
+                find(message) {
+                    return Tags.find({_id: {$in: message.tags}});
+                }
+            }
+        ]
+    };
 });
 
-Meteor.publish('messagesByIds', function (ids) {
-    return Messages.find({_id: {$in: ids}});
+Meteor.publishComposite('messagesByIds', function (ids) {
+    return {
+        find() {
+            return Messages.find({_id: {$in: ids}});
+        },
+        children: [
+            {
+                find(message) {
+                    return Tags.find({_id: {$in: message.tags}});
+                }
+            }
+        ]
+    };
 });
