@@ -1,10 +1,10 @@
 <template name="messageItem">
     <div class="label">
-        <img src="http://api.adorable.io/avatar/200/{{message.userId}}.png" alt="avatar">
+        <img src="http://api.adorable.io/avatar/200/{{message.hash}}.png" alt="avatar">
     </div>
     <div class="content">
         <div class="summary">
-            <a>{{message.hash}}</a>
+            <a style="font-weight: 300">{{message.hash}}</a>
         </div>
         <div class="date">
             {{howLong}}

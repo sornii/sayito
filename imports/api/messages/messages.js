@@ -31,6 +31,9 @@ const MessageSchema = new SimpleSchema({
         type: [String],
         regEx: SimpleSchema.RegEx.Id,
         optional: true
+    },
+    hash: {
+        type: String
     }
 });
 
@@ -40,9 +43,6 @@ Messages.helpers({
             return this.thumbsup.length;
         }
         return 0;
-    },
-    hash() {
-        return CryptoJS.MD5(this.createdAt);
     }
 });
 

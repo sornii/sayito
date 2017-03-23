@@ -36,8 +36,9 @@ export const insert = new ValidatedMethod({
             throw new Meteor.Error('messages.insert.hasNoTags', TAPi18n.__('messages_no_tags'));
         }
 
-        var date = new Date();
-        return Messages.insert({text, tags, createdAt: date, bumpAt: date, userId: this.userId});
+        const date = new Date();
+        const hash = CryptoJS.MD5(date.getTime().toString()).toString();
+        return Messages.insert({text, tags, hash, createdAt: date, bumpAt: date});
     }
 });
 

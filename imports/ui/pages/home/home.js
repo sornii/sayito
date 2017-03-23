@@ -44,7 +44,7 @@ Template.home.events({
             insert.call({text});
             $sayitoInputLabel.transition('hide fade');
         } catch (err) {
-            $sayitoInputLabel.text(err.reason);
+            $sayitoInputLabel.text(err.reason || err);
             $sayitoInputLabel.transition('show fade');
         }
     }

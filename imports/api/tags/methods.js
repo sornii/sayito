@@ -26,6 +26,6 @@ export const tagsTrending = new ValidatedMethod({
             })
             .value();
 
-        console.log(_.sortBy(tagsCount, 'count'));
+        //console.log(_.sortBy(tagsCount, 'count'));
     }
 });
