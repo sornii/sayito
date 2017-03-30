@@ -8,6 +8,7 @@ import {commonFilter as trendingTagsFilter} from "../../../api/trendingTags/filt
 import {insert} from "../../../api/messages/methods.js";
 import "../../components/messageList/messageList.js";
 import "../../components/loading/loading.js";
+import "../../components/dummy/dummy.js";
 import "./home.html";
 
 Template.home.onRendered(function homeOnRendered() {

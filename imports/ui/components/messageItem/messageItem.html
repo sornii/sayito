@@ -1,22 +1,24 @@
 <template name="messageItem">
-    <div class="label">
-        <img src="http://api.adorable.io/avatar/200/{{message.hash}}.png" alt="avatar">
-    </div>
-    <div class="content">
-        <div class="summary">
-            <a style="font-weight: 300">
-                {{{message.link}}}
-            </a>
-            <div class="date">
-                {{howLong}}
+    <div class="event">
+        <div class="label">
+            <img src="http://api.adorable.io/avatar/200/{{message.hash}}.png" alt="avatar">
+        </div>
+        <div class="content">
+            <div class="summary">
+                <a style="font-weight: 300">
+                    {{{message.link}}}
+                </a>
+                <div class="date">
+                    {{howLong}}
+                </div>
             </div>
-        </div>
 
-        <div class="extra text">
-            {{{message.formattedText}}}
-        </div>
-        <div class="meta">
-            {{> messageThumbsup}}
+            <div class="extra text">
+                {{{message.formattedText}}}
+            </div>
+            <div class="meta">
+                {{> messageThumbsup}}
+            </div>
         </div>
     </div>
 </template>

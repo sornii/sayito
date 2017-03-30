@@ -1,9 +1,7 @@
 <template name="messageList">
     <div class="ui feed sayito messages">
         {{#each message in messages}}
-            <div class="event">
-                {{> messageItem message=message}}
-            </div>
+            {{> messageItem message=message}}
         {{/each}}
     </div>
 </template>

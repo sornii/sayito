@@ -1,15 +1,26 @@
-import {SyncedCron} from 'meteor/percolate:synced-cron';
+import {SyncedCron} from "meteor/percolate:synced-cron";
 import {Messages} from "../../api/messages/messages.js";
 import {TrendingTags} from "../../api/trendingTags/trendingTags.js";
+
+const RANK_UP_HASHTAG_CRON_NAME = "Cron to rank up the hashtags";
 
 SyncedCron.config({
     collectionName: 'crons'
 });
 
 SyncedCron.add({
-    name: 'Uses the force to rank up the most used tags in the last five seconds',
+    name: 'Remove rank up history',
     schedule: function (parser) {
-        //TODO: change it to a higher value
+        return parser.text('every 1 hour');
+    },
+    job: function () {
+        SyncedCron._collection.remove({name: RANK_UP_HASHTAG_CRON_NAME});
+    }
+});
+
+SyncedCron.add({
+    name: 'Cron to rank up the hashtags',
+    schedule: function (parser) {
         return parser.text('every 5 seconds');
     },
     job: function () {
