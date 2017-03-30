@@ -2,12 +2,12 @@ import {Meteor} from "meteor/meteor";
 import {Messages} from "../messages.js";
 import {Tags} from "../../tags/tags.js";
 
-import {commonFilter} from "../filters";
+import {MessagesFilter} from "../filters";
 
-Meteor.publishComposite('messages', function () {
+Meteor.publishComposite('messages', function (limit) {
     return {
         find() {
-            return Messages.find({}, commonFilter);
+            return Messages.find({}, MessagesFilter.common({limit}));
         },
         children: [
             {
@@ -33,7 +33,7 @@ Meteor.publishComposite('messagesByTag', function (tag) {
                 tagToBeUsed = Tags.insert({text: tagText});
             }
 
-            return Messages.find({tags: tagToBeUsed._id}, commonFilter);
+            return Messages.find({tags: tagToBeUsed._id}, MessagesFilter.common());
         },
         children: [
             {
