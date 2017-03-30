@@ -19,7 +19,7 @@ Template.home.onRendered(function homeOnRendered() {
 
 Template.home.onCreated(function homeOnCreated() {
 
-    this.autorun(() => {
+    /*this.autorun(() => {
 
         const tagRoute = ActiveRoute.name('tag');
 
@@ -31,7 +31,7 @@ Template.home.onCreated(function homeOnCreated() {
 
         this.subscribe('ranking');
 
-    });
+    });*/
 });
 
 Template.home.helpers({
