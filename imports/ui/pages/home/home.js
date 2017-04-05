@@ -18,20 +18,6 @@ Template.home.onRendered(function homeOnRendered() {
 });
 
 Template.home.onCreated(function homeOnCreated() {
-
-    /*this.autorun(() => {
-
-        const tagRoute = ActiveRoute.name('tag');
-
-        if (tagRoute) {
-            this.subscribe('messagesByTag', FlowRouter.getParam('tag'));
-        } else {
-            this.subscribe('messages');
-        }
-
-        this.subscribe('ranking');
-
-    });*/
 });
 
 Template.home.helpers({

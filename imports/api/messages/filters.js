@@ -1,6 +1,6 @@
 import {_} from "meteor/underscore";
 
-const commonFilter = {limit: 10, sort: {createdAt: -1}};
+const commonFilter = {limit: 5, sort: {createdAt: -1}};
 
 export class MessagesFilter {
 

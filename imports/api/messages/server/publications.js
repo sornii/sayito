@@ -4,7 +4,7 @@ import {Tags} from "../../tags/tags.js";
 
 import {MessagesFilter} from "../filters";
 
-Meteor.publishComposite('messages', function (limit) {
+Meteor.publishComposite('messages', function ({limit}) {
     return {
         find() {
             return Messages.find({}, MessagesFilter.common({limit}));
@@ -19,7 +19,7 @@ Meteor.publishComposite('messages', function (limit) {
     };
 });
 
-Meteor.publishComposite('messagesByTag', function (tag) {
+Meteor.publishComposite('messagesByTag', function ({limit, tag}) {
     return {
         find() {
             const tagText = '#' + tag;
@@ -33,7 +33,7 @@ Meteor.publishComposite('messagesByTag', function (tag) {
                 tagToBeUsed = Tags.insert({text: tagText});
             }
 
-            return Messages.find({tags: tagToBeUsed._id}, MessagesFilter.common());
+            return Messages.find({tags: tagToBeUsed._id}, MessagesFilter.common({limit}));
         },
         children: [
             {
