@@ -43,7 +43,7 @@ export const insert = new ValidatedMethod({
 
         if (thread || password) {
             if (thread && password)
-                threadFound = Threads.findOne({name: thread, password});
+                threadFound = Threads.findOne({password, name: thread});
             if (!threadFound)
                 throw new Meteor.Error('messages.insert.invalidThread', TAPi18n.__('messages_invalid_thread'));
         }

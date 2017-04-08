@@ -37,9 +37,9 @@ Template.messageInput.events({
 
         const $sayitoInputLabel = $('#sayito-input-label');
         try {
-            const message = {text};
+            let message = {text};
             if (instance.data.inputThreadParams) {
-                _.extend({}, message, instance.data.inputThreadParams);
+                message = _.extend({}, message, instance.data.inputThreadParams);
             }
             messageInsert.call(message);
             $sayitoInputLabel.transition('hide fade');

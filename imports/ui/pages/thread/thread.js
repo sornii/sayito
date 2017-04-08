@@ -5,6 +5,7 @@ import {ReactiveDict} from 'meteor/reactive-dict';
 import {_} from 'meteor/underscore';
 import {$} from 'meteor/jquery';
 
+import {Threads} from '../../../api/threads/threads';
 import {threadPasswords} from '../../../utils/thread-passwords';
 
 import '../../components/messageInput/messageInput';
@@ -25,15 +26,23 @@ Template.thread.onCreated(function threadOnCreated() {
     this.autorun(() => {
         const thread = FlowRouter.getParam(this.nameParam);
         this.state.set(this.passwordState, threadPasswords.retrievePassword(thread));
+    });
+
+    Tracker.autorun(() => {
+        const thread = FlowRouter.getParam(this.nameParam);
+        const password = this.state.get(this.passwordState);
+        this.subscribe('threads', {password, name: thread});
     })
 });
 
 Template.thread.onRendered(function threadOnRendered() {
-    $('#password-thread-modal')
-        .modal({
-            detachable: false
-        })
-        .modal('show');
+    if (Threads.count({}) === 0) {
+        $('#password-thread-modal')
+            .modal({
+                detachable: false
+            })
+            .modal('show');
+    }
 });
 
 Template.thread.events({});
