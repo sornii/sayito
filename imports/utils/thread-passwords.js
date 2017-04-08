@@ -1,7 +1,11 @@
 class ThreadPasswords {
 
     constructor() {
-        this._threads = JSON.parse(localStorage.threads);
+        if (!localStorage.threads) {
+            this._threads = {};
+        } else {
+            this._threads = JSON.parse(localStorage.threads);
+        }
     }
 
     savePassword(thread, password) {
