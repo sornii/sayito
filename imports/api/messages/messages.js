@@ -36,6 +36,11 @@ const MessageSchema = new SimpleSchema({
     },
     hash: {
         type: String
+    },
+    thread: {
+        type: String,
+        regEx: SimpleSchema.RegEx.Id,
+        optional: true
     }
 });
 

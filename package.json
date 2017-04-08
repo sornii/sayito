@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "meteor-node-stubs": "~0.2.0"
   }
 }

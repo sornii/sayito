@@ -5,18 +5,35 @@ import {Tracker} from "meteor/tracker";
 import {moment} from "meteor/momentjs:moment";
 
 Template.messageItem.onCreated(function messageItemOnCreated() {
+    const howLong = 'howLong';
 
-    this.howLong = new ReactiveVar();
+    this.calculateHowLong = () =>
+        moment(this.data.message.createdAt).fromNow();
 
-    //TODO: TESTES PARA ATUALIZAR A MENSAGEM A CADA SEGUNDO/MINUTO
-
-    this.autorun(() => {
-        this.howLong.set(moment(this.data.message.createdAt).fromNow());
+    this.state = new ReactiveDict();
+    this.state.setDefault({
+        [howLong]: this.calculateHowLong()
     });
+
+    this.getHowLong = () =>
+        this.state.get(howLong);
+
+    this.setHowLong = (howLongValue) =>
+        this.state.set(howLong, howLongValue);
+
+    this.defineHowLong = () =>
+        this.setHowLong(this.calculateHowLong());
+
+    this.interval = setInterval(this.defineHowLong, 60 * 1000);
+});
+
+Template.messageItem.onDestroyed(function messageItemOnDestroyed() {
+    clearInterval(this.interval);
 });
 
 Template.messageItem.helpers({
     howLong () {
-        return Template.instance().howLong.get();
+        const instance = Template.instance();
+        return instance.getHowLong();
     }
 });

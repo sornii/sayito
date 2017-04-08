@@ -1,8 +1,7 @@
 <template name="App_body">
     <div class="ui center aligned container">
+        {{> threadKey }}
         {{> sayitoHeader}}
-        {{#momentum plugin='instaRemoveFadeIn'}}
-            {{> Template.dynamic template=content}}
-        {{/momentum}}
+        {{> Template.dynamic template=content}}
     </div>
 </template>

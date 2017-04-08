@@ -1,0 +1,33 @@
+<template name="threadModal">
+    <div id="thread-modal" class="ui small modal">
+        <i class="close icon"></i>
+        <div class="header">
+            Thread
+        </div>
+        <div class="content">
+            <form id="thread-form" class="ui form">
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Thread Name">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="text" name="password" placeholder="Thread Password">
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="creator" placeholder="Your Email">
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                Cancel
+            </div>
+            <div id="thread-start" class="ui positive right labeled icon button thread-start">
+                Start thread
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+</template>

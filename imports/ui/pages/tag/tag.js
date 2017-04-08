@@ -7,31 +7,24 @@ import "../../components/messageInput/messageInput.js";
 import "../../components/messageList/messageList.js";
 import "../../components/loading/loading.js";
 import "../../components/dummy/dummy.js";
-import "./home.html";
+import "./tag.html";
 
-Template.home.onRendered(function homeOnRendered() {
-
-});
-
-Template.home.onCreated(function homeOnCreated() {
+Template.tag.onRendered(function tagOnRendered() {
 
 });
 
-Template.home.helpers({
+Template.tag.onCreated(function tagOnCreated() {
+});
+
+Template.tag.helpers({
     subscriptionNameParams() {
         return {
-            name: 'messages',
-            params: { }
-        };
-    },
-
-    subscriptionMethod () {
-
-        const instance = Template.instance();
-
-        return {
-            subscribe: (params) => instance.subscribe('messages', params)
+            name: 'messagesByTag',
+            params: {
+                get tag () {
+                    return FlowRouter.getParam('tag');
+                }
+            },
         };
     }
 });
-

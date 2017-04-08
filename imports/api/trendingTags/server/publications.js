@@ -3,12 +3,12 @@ import {TrendingTags} from "../trendingTags.js";
 import {Tags} from "../../tags/tags.js";
 import {_} from "meteor/underscore";
 
-import {commonFilter} from "../filters";
+import {TrendingTagsFilter} from "../filters";
 
 Meteor.publishComposite('ranking', function () {
     return {
         find() {
-            return TrendingTags.find({}, commonFilter);
+            return TrendingTags.find({}, TrendingTagsFilter.common());
         },
         children: [
             {

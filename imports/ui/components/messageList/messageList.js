@@ -25,30 +25,13 @@ Template.messageList.onCreated(function messageListOnCreated() {
     this.increaseLimit = () =>
         this.state.set(limit, this.getLimit() + limitStep);
 
-    this.resetLimit = () =>
-        this.state.set(limit, limitStep);
-
-    this.isTagRoute = () =>
-        ActiveRoute.name('tag') === true;
-
-    this.getSubscriptionName = () =>
-        ActiveRoute.name('tag') ? 'messagesByTag' : 'messages';
-
-    this.getSubscriptionParams = () => {
-        const params = {limit: this.getLimit()};
-        if (this.isTagRoute())
-            params.tag = FlowRouter.getParam('tag');
-        return params;
+    this.getSubscriptionParams = (params) => {
+        return _.extend({}, params, {limit: this.getLimit()});
     };
 
     Tracker.autorun(() => {
-        ActiveRoute.name('tag');
-        FlowRouter.getParam('tag');
-        this.resetLimit();
-    });
-
-    Tracker.autorun(() => {
-        this.subscribe(this.getSubscriptionName(), this.getSubscriptionParams());
+        const {name, params} = this.data;
+        this.subscribe(name, this.getSubscriptionParams(params));
     });
 });
 
@@ -60,6 +43,7 @@ Template.messageList.onRendered(function messageListOnRendered() {
         .visibility({
             once: false,
             initialCheck: false,
+            //observeChanges: true,
             onBottomVisible () {
                 instance.increaseLimit();
             }

@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
-import {Messages} from "../messages.js";
-import {Tags} from "../../tags/tags.js";
+import {Messages} from "../messages";
+import {Threads} from "../../threads/threads";
+import {Tags} from "../../tags/tags";
 
 import {MessagesFilter} from "../filters";
 
@@ -17,6 +18,26 @@ Meteor.publishComposite('messages', function ({limit}) {
             }
         ]
     };
+});
+
+Meteor.publishComposite('messagesByThread', function ({limit, thread, password}) {
+    return {
+        find() {
+            const threadFound = Threads.findOne({password, name: thread});
+
+            if (!threadFound)
+                return null;
+
+            return Messages.find({thread: threadFound._id}, MessagesFilter.common({limit}));
+        },
+        children: [
+            {
+                find(message) {
+                    return Tags.find({_id: {$in: message.tags}});
+                }
+            }
+        ]
+    }
 });
 
 Meteor.publishComposite('messagesByTag', function ({limit, tag}) {

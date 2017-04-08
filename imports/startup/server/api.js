@@ -10,15 +10,20 @@
  */
 
 // Messages
-import '../../api/messages/messages.js';
-import '../../api/messages/methods.js';
-import '../../api/messages/server/publications.js';
+import '../../api/messages/messages';
+import '../../api/messages/methods';
+import '../../api/messages/server/publications';
 
 // Tags
-import '../../api/tags/tags.js';
-import '../../api/tags/methods.js';
-import '../../api/tags/server/publications.js';
+import '../../api/tags/tags';
+import '../../api/tags/methods';
+import '../../api/tags/server/publications';
+
+// Threads
+import '../../api/threads/threads'
+import '../../api/threads/methods'
+import '../../api/threads/server/publications'
 
 // Trending Tags
-import '../../api/trendingTags/trendingTags.js';
-import '../../api/trendingTags/server/publications.js';
+import '../../api/trendingTags/trendingTags';
+import '../../api/trendingTags/server/publications';
