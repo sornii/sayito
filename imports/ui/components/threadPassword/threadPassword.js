@@ -1,16 +1,23 @@
-import './threadModal.html';
-
 import {Template} from "meteor/templating";
 
-Template.threadModal.onCreated(function () {
+import './threadPassword.html';
 
-    this.subscribe()
-
+Template.threadPassword.onCreated(function () {
 });
 
-Template.threadModal.events({
+Template.threadPassword.events({
     'click #thread-view' () {
+        const instance = Template.instance();
+
         const threadForm = $('#password-thread-modal');
-        threadForm.form('get values');
+        const password = threadForm.form('get values').password;
+
+        instance.data.changePassword(password);
+    },
+
+    'submit #password-thread-form' (event) {
+
+        event.preventDefault();
+
     }
 });

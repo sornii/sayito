@@ -1,4 +1,5 @@
 <template name="thread">
-    {{> messageInput }}
-    {{> messageList subscriptionNameParams}}
+    {{> messageInput inputThreadParams=inputThreadParams}}
+    {{> messageList subscriptionNameParams=subscriptionNameParams}}
+    {{> threadPassword changePassword=changePassword}}
 </template>

@@ -1,15 +1,18 @@
 import {ValidatedMethod} from "meteor/mdg:validated-method";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {TAPi18n} from "meteor/tap:i18n";
-import {Messages} from "./messages.js";
-import {Tags} from "../tags/tags.js";
+import {Messages} from "./messages";
+import {Tags} from "../tags/tags";
+import {Threads} from "../threads/threads";
 
 export const insert = new ValidatedMethod({
     name: 'messages.insert',
     validate: new SimpleSchema({
-        text: {type: String, max: 140}
+        text: {type: String, max: 140},
+        thread: {type: String, optional: true},
+        password: {type: String, optional: true}
     }).validator(),
-    run({text}) {
+    run({text, thread, password}) {
         if (!this.userId) {
             throw new Meteor.Error('not-authorized');
         }
@@ -36,9 +39,23 @@ export const insert = new ValidatedMethod({
             throw new Meteor.Error('messages.insert.hasNoTags', TAPi18n.__('messages_no_tags'));
         }
 
+        let threadFound = null;
+
+        if (thread || password) {
+            if (thread && password)
+                threadFound = Threads.findOne({name: thread, password});
+            if (!threadFound)
+                throw new Meteor.Error('messages.insert.invalidThread', TAPi18n.__('messages_invalid_thread'));
+        }
+
         const date = new Date();
         const hash = CryptoJS.MD5(date.getTime().toString()).toString();
-        return Messages.insert({text, tags, hash, createdAt: date, bumpAt: date});
+        const message = {text, tags, hash, createdAt: date, bumpAt: date};
+
+        if (threadFound)
+            message.thread = threadFound._id;
+
+        return Messages.insert(message);
     }
 });
 

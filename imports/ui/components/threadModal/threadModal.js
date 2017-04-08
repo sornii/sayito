@@ -16,5 +16,9 @@ Template.threadModal.events({
         } catch (err) {
             alert(err);
         }
+    },
+
+    'submit #thread-form' (event) {
+        event.preventDefault();
     }
 });

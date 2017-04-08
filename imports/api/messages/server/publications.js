@@ -8,7 +8,7 @@ import {MessagesFilter} from "../filters";
 Meteor.publishComposite('messages', function ({limit}) {
     return {
         find() {
-            return Messages.find({}, MessagesFilter.common({limit}));
+            return Messages.find({thread: null}, MessagesFilter.common({limit}));
         },
         children: [
             {
@@ -54,7 +54,7 @@ Meteor.publishComposite('messagesByTag', function ({limit, tag}) {
                 tagToBeUsed = Tags.insert({text: tagText});
             }
 
-            return Messages.find({tags: tagToBeUsed._id}, MessagesFilter.common({limit}));
+            return Messages.find({thread: null, tags: tagToBeUsed._id}, MessagesFilter.common({limit}));
         },
         children: [
             {
@@ -69,7 +69,7 @@ Meteor.publishComposite('messagesByTag', function ({limit, tag}) {
 Meteor.publishComposite('messagesByIds', function (ids) {
     return {
         find() {
-            return Messages.find({_id: {$in: ids}});
+            return Messages.find({_id: {$in: ids}, thread: null});
         },
         children: [
             {

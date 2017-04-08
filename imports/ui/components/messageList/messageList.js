@@ -6,7 +6,8 @@ import {ActiveRoute} from "meteor/zimme:active-route";
 import {ReactiveVar} from "meteor/reactive-var";
 import {Messages} from "../../../api/messages/messages.js";
 import {MessagesFilter} from "../../../api/messages/filters";
-import { Tracker } from 'meteor/tracker'
+import {Tracker} from 'meteor/tracker'
+import {$} from "meteor/jquery";
 import "../../components/dummy/dummy.js";
 import "./messageList.html";
 
@@ -30,7 +31,7 @@ Template.messageList.onCreated(function messageListOnCreated() {
     };
 
     Tracker.autorun(() => {
-        const {name, params} = this.data;
+        const {name, params} = this.data.subscriptionNameParams;
         this.subscribe(name, this.getSubscriptionParams(params));
     });
 });

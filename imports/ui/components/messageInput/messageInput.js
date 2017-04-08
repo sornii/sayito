@@ -2,6 +2,8 @@ import {Template} from "meteor/templating";
 import {TrendingTags} from "../../../api/trendingTags/trendingTags.js";
 import {TrendingTagsFilter} from "../../../api/trendingTags/filters.js";
 import {insert as messageInsert} from "../../../api/messages/methods.js";
+import {_} from "meteor/underscore";
+import {$} from "meteor/jquery";
 
 import "./messageInput.html";
 
@@ -26,6 +28,7 @@ Template.messageInput.helpers({
 Template.messageInput.events({
 
     'submit .sayito.form' (event) {
+        const instance = Template.instance();
         event.preventDefault();
 
         const $sayitoForm = $(".sayito-input");
@@ -34,7 +37,11 @@ Template.messageInput.events({
 
         const $sayitoInputLabel = $('#sayito-input-label');
         try {
-            messageInsert.call({text});
+            const message = {text};
+            if (instance.data.inputThreadParams) {
+                _.extend({}, message, instance.data.inputThreadParams);
+            }
+            messageInsert.call(message);
             $sayitoInputLabel.transition('hide fade');
         } catch (err) {
             $sayitoInputLabel.text(err.reason || err);

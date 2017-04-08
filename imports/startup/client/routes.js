@@ -2,21 +2,24 @@ import {FlowRouter} from 'meteor/kadira:flow-router';
 import {BlazeLayout} from 'meteor/kadira:blaze-layout';
 
 //layouts
-import '../../ui/layouts/app-body.js';
+import '../../ui/layouts/app-body';
 
 //pages
-import '../../ui/pages/home/home.js';
-import '../../ui/pages/said/said.js';
-import '../../ui/pages/tag/tag.js';
-import '../../ui/pages/teste/teste.js';
+import '../../ui/pages/home/home';
+import '../../ui/pages/said/said';
+import '../../ui/pages/tag/tag';
+import '../../ui/pages/thread/thread'
 
 //componentes
-import '../../ui/components/dummy/dummy.js';
-import '../../ui/components/loading/loading.js';
-import '../../ui/components/messageInput/messageInput.js';
-import '../../ui/components/messageItem/messageItem.js';
-import '../../ui/components/messageThumbsup/messageThumbsup.js';
-import '../../ui/components/sayitoHeader/sayitoHeader.js';
+import '../../ui/components/dummy/dummy';
+import '../../ui/components/loading/loading';
+import '../../ui/components/messageInput/messageInput';
+import '../../ui/components/messageItem/messageItem';
+import '../../ui/components/messageThumbsup/messageThumbsup';
+import '../../ui/components/sayitoHeader/sayitoHeader';
+import '../../ui/components/threadKey/threadKey';
+import '../../ui/components/threadModal/threadModal';
+import '../../ui/components/threadPassword/threadPassword';
 
 import 'meteor/percolate:momentum';
 
@@ -38,9 +41,4 @@ FlowRouter.route('/said/:id', {
 FlowRouter.route('/thread/:name', {
     name: 'thread',
     action: () => BlazeLayout.render('App_body', {content: 'thread'})
-});
-
-FlowRouter.route('/teste', {
-    name: 'teste',
-    action: () => BlazeLayout.render('App_body', {content: 'teste'})
 });
