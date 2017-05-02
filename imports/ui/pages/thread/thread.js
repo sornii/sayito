@@ -23,26 +23,49 @@ Template.thread.onCreated(function threadOnCreated() {
         [this.passwordState]: null
     });
 
-    this.autorun(() => {
-        const thread = FlowRouter.getParam(this.nameParam);
-        this.state.set(this.passwordState, threadPasswords.retrievePassword(thread));
+    this.getNameParam = () =>
+        FlowRouter.getParam(this.nameParam);
+
+    this.getPasswordState = () =>
+        this.state.get(this.passwordState);
+
+    this.setPasswordState = (password) =>
+        this.state.set(this.passwordState, password);
+
+    const instance = this;
+    this.getParams = () => {
+        return {
+            get thread() {
+                return instance.getNameParam();
+            },
+            get password() {
+                return instance.getPasswordState();
+            }
+        }
+    };
+
+    Tracker.autorun(() => {
+        this.setPasswordState(threadPasswords.retrievePassword(this.getNameParam()));
     });
 
     Tracker.autorun(() => {
-        const thread = FlowRouter.getParam(this.nameParam);
-        const password = this.state.get(this.passwordState);
+        const thread = this.getNameParam();
+        const password = this.getPasswordState();
         this.subscribe('threads', {password, name: thread});
     })
 });
 
 Template.thread.onRendered(function threadOnRendered() {
-    if (Threads.count({}) === 0) {
-        $('#password-thread-modal')
-            .modal({
-                detachable: false
-            })
-            .modal('show');
-    }
+    this.autorun(() => {
+        if (this.getPasswordState() === undefined ||
+            (this.subscriptionsReady() && Threads.find({}).count() === 0)) {
+            $('#password-thread-modal')
+                .modal({
+                    detachable: false
+                })
+                .modal('show');
+        }
+    });
 });
 
 Template.thread.events({});
@@ -52,22 +75,14 @@ Template.thread.helpers({
         const instance = Template.instance();
 
         return (password) => {
-            threadPasswords.savePassword(FlowRouter.getParam(instance.nameParam), password);
-            instance.state.set(instance.passwordState, password);
+            threadPasswords.savePassword(instance.getNameParam(), password);
+            instance.setPasswordState(password);
         }
     },
 
     inputThreadParams() {
         const instance = Template.instance();
-
-        return {
-            get thread() {
-                return FlowRouter.getParam(instance.nameParam);
-            },
-            get password() {
-                return instance.state.get(instance.passwordState);
-            }
-        }
+        return instance.getParams();
     },
 
     subscriptionNameParams() {
@@ -76,12 +91,7 @@ Template.thread.helpers({
         return {
             name: 'messagesByThread',
             params: {
-                get thread() {
-                    return FlowRouter.getParam(instance.nameParam);
-                },
-                get password() {
-                    return instance.state.get(instance.passwordState);
-                }
+                ... instance.getParams()
             },
         };
     }
