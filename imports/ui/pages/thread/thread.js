@@ -33,15 +33,12 @@ Template.thread.onCreated(function threadOnCreated() {
         this.state.set(this.passwordState, password);
 
     const instance = this;
+
     this.getParams = () => {
         return {
-            get thread() {
-                return instance.getNameParam();
-            },
-            get password() {
-                return instance.getPasswordState();
-            }
-        }
+            thread: instance.getNameParam,
+            password: instance.getPasswordState
+        };
     };
 
     Tracker.autorun(() => {

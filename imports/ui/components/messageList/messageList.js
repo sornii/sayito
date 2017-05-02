@@ -32,7 +32,11 @@ Template.messageList.onCreated(function messageListOnCreated() {
 
     Tracker.autorun(() => {
         const {name, params} = this.data.subscriptionNameParams;
-        this.subscribe(name, this.getSubscriptionParams(params));
+        const paramsFinal = {};
+        for(let f in params) {
+            paramsFinal[f] = params[f]();
+        }
+        this.subscribe(name, this.getSubscriptionParams(paramsFinal));
     });
 });
 

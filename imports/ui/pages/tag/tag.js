@@ -24,8 +24,8 @@ Template.tag.helpers({
         return {
             name: 'messagesByTag',
             params: {
-                get tag () {
-                    return FlowRouter.getParam('tag');
+                tag: function () {
+                    return FlowRouter.getParam('tag')
                 }
             },
         };
