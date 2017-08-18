@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import '../threadModal/threadModal';
 
 Template.threadKey.events({
-    'click .fa.fa-key' (event) {
+    'click button' (event) {
         event.preventDefault();
 
         $('#thread-modal')
