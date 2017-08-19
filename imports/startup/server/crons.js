@@ -29,7 +29,7 @@ SyncedCron.add({
         const date = new Date();
         date.setHours(date.getHours() - 1);
 
-        const messages = Messages.find({createdAt: {$gte: date}}).fetch();
+        const messages = Messages.find({thread: null, createdAt: {$gte: date}}).fetch();
 
         const tagsCounted = _.chain(messages)
             .pluck('tags')
@@ -47,14 +47,7 @@ SyncedCron.add({
         }
 
         tagsCounted.forEach((tagCounted, index) => {
-            const found = TrendingTags.findOne({rank: index});
-            if (found) {
-                if (found.tag != tagCounted.tag) {
-                    TrendingTags.update({rank: index}, {$set: {tag: tagCounted.tag}});
-                }
-            } else {
-                TrendingTags.insert({rank: index, tag: tagCounted.tag});
-            }
+            TrendingTags.insert({rank: index, tag: tagCounted.tag});
         });
 
         return tagsCounted;

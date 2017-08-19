@@ -5,15 +5,15 @@ import {Tags} from "../../tags/tags";
 
 import {MessagesFilter} from "../filters";
 
-Meteor.publishComposite('messages', function ({limit, thread, password}) {
+Meteor.publishComposite('messages', function ({limit, name, password}) {
     return {
         find() {
 
             let threadFound = null;
 
-            if (thread || password) {
-                if (thread && password) {
-                    threadFound = Threads.findOne({password, name: thread});
+            if (name || password) {
+                if (name && password) {
+                    threadFound = Threads.findOne({password, name});
                 }
                 if (!threadFound) {
                     throw new Meteor.Error('invalid.password', 'Invalid thread or password');

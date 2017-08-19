@@ -1,17 +1,23 @@
 import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
 
 import {TrendingTags} from "../../../api/trendingTags/trendingTags.js";
 import {TrendingTagsFilter} from "../../../api/trendingTags/filters.js";
 import {insert as messageInsert} from "../../../api/messages/methods.js";
 
-import _ from "underscore";
 import $ from "jquery";
 
 import "./messageInput.html";
 
 Template.messageInput.onCreated(function messageInputOnCreated() {
     this.autorun(() => {
-        this.subscribe('ranking', this.data.inputThreadParams);
+
+        const params = {
+            name: Session.get('name'),
+            password: Session.get('password')
+        };
+
+        this.subscribe('ranking', {... params});
     });
 });
 
@@ -39,11 +45,11 @@ Template.messageInput.events({
 
         const $sayitoInputLabel = $('#sayito-input-label');
         try {
-            let message = {text};
-            if (instance.data.inputThreadParams) {
-                message = _.extend({}, message, instance.data.inputThreadParams);
-            }
-            messageInsert.call(message);
+            const params = {
+                name: Session.get('name'),
+                password: Session.get('password')
+            };
+            messageInsert.call({text, ...params});
             $sayitoInputLabel.transition('hide fade');
         } catch (err) {
             $sayitoInputLabel.text(err.reason || err);

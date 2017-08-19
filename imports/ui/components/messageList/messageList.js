@@ -1,5 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {Template} from "meteor/templating";
+import {Session} from 'meteor/session'
 import {ReactiveDict} from "meteor/reactive-dict";
 import {FlowRouter} from "meteor/kadira:flow-router";
 import {ActiveRoute} from "meteor/zimme:active-route";
@@ -26,13 +27,14 @@ Template.messageList.onCreated(function messageListOnCreated() {
     this.increaseLimit = () =>
         this.state.set(limit, this.getLimit() + limitStep);
 
-    this.getSubscriptionParams = (params) => {
-        return _.extend({}, params, {limit: this.getLimit()});
+    const getSubscriptionParams = (params) => {
+        return {limit: this.getLimit(), ...params};
     };
 
     Tracker.autorun(() => {
-        const {name, params} = this.data.subscriptionNameParams;
-        this.subscribe(name, this.getSubscriptionParams(params));
+        const name = Session.get('name');
+        const password = Session.get('password');
+        this.subscribe('messages', getSubscriptionParams({name, password}));
     });
 });
 

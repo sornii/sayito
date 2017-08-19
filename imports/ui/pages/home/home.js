@@ -13,28 +13,10 @@ import "../../components/dummy/dummy";
 import "./home.html";
 
 Template.home.onRendered(function homeOnRendered() {
-
 });
 
 Template.home.onCreated(function homeOnCreated() {
-
 });
 
-Template.home.helpers({
-    subscriptionNameParams() {
-        return {
-            name: 'messages',
-            params: {}
-        };
-    },
-
-    subscriptionMethod () {
-
-        const instance = Template.instance();
-
-        return {
-            subscribe: (params) => instance.subscribe('messages', params)
-        };
-    }
-});
+Template.home.helpers({});
 

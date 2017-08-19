@@ -1,4 +1,5 @@
 import {Template} from 'meteor/templating';
+import {Session} from 'meteor/session'
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {ReactiveDict} from 'meteor/reactive-dict';
 
@@ -15,47 +16,28 @@ import '../../components/threadPassword/threadPassword';
 import './thread.html';
 
 Template.thread.onCreated(function threadOnCreated() {
-    this.nameParam = 'name';
-    this.passwordState = 'password';
+    const name = FlowRouter.getParam('name');
 
-    this.state = new ReactiveDict();
-    this.state.setDefault({
-        [this.passwordState]: null
-    });
-
-    this.getNameParam = () =>
-        FlowRouter.getParam(this.nameParam);
-
-    this.getPasswordState = () =>
-        this.state.get(this.passwordState);
-
-    this.setPasswordState = (password) =>
-        this.state.set(this.passwordState, password);
-
-    const instance = this;
-
-    this.getParams = () => {
-        return {
-            thread: instance.getNameParam(),
-            password: instance.getPasswordState()
-        };
-    };
+    Session.set('name', name);
+    Session.set('password', ThreadPasswords.retrievePassword(name));
 
     Tracker.autorun(() => {
-        this.setPasswordState(ThreadPasswords.retrievePassword(this.getNameParam()));
-    });
-
-    Tracker.autorun(() => {
-        const thread = this.getNameParam();
-        const password = this.getPasswordState();
-        this.subscribe('threads', {password, name: thread});
+        const name = Session.get('name');
+        const password = Session.get('password');
+        this.subscribe('threads', {name, password});
     })
+});
+
+Template.thread.onDestroyed(function threadOnDestroyed() {
+    Session.set('name', undefined);
+    Session.set('password', undefined);
 });
 
 Template.thread.onRendered(function threadOnRendered() {
     this.autorun(() => {
-        if (this.getPasswordState() === undefined ||
+        if (Session.get('password') === undefined ||
             (this.subscriptionsReady() && Threads.find({}).count() === 0)) {
+
             $('#password-thread-modal')
                 .modal({
                     detachable: false
@@ -65,31 +47,8 @@ Template.thread.onRendered(function threadOnRendered() {
     });
 });
 
-Template.thread.events({});
+Template.thread.events({
+});
 
 Template.thread.helpers({
-    changePassword() {
-        const instance = Template.instance();
-
-        return (password) => {
-            ThreadPasswords.savePassword(instance.getNameParam(), password);
-            instance.setPasswordState(password);
-        }
-    },
-
-    inputThreadParams() {
-        const instance = Template.instance();
-        return instance.getParams();
-    },
-
-    subscriptionNameParams() {
-        const instance = Template.instance();
-
-        return {
-            name: 'messages',
-            params: {
-                ... instance.getParams()
-            },
-        };
-    }
 });
