@@ -34,7 +34,7 @@ FlowRouter.route('/hashtag/:tag', {
     action: () => BlazeLayout.render('App_body', {content: 'tag'}),
 });
 
-FlowRouter.route('/said/:id', {
+FlowRouter.route('/said/:hash', {
     name: 'said',
     action: () => BlazeLayout.render('App_body', {content: 'said'}),
 });

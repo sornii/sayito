@@ -1,8 +1,10 @@
 <template name="messageItem">
     <div class="event">
-        <div class="label">
-            <img src="http://api.adorable.io/avatar/200/{{message.hash}}.png" alt="avatar">
-        </div>
+        {{#if undefinedOr showImage}}
+            <div class="label">
+                <img src="http://api.adorable.io/avatar/200/{{message.hash}}.png" alt="avatar">
+            </div>
+        {{/if}}
         <div class="content">
             <div class="summary">
                 <a style="font-weight: 300">

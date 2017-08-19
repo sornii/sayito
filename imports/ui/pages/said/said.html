@@ -1,7 +1,9 @@
 <template name="said">
-    {{#if Template.subscriptionsReady}}
-        {{{messageSaid.formattedText}}}
-    {{else}}
-        {{> loading}}
+    {{#if messageSaid}}
+        <img class="ui centered circular small image"
+             src="http://api.adorable.io/avatar/200/{{messageSaid.hash}}.png" alt="avatar">
+        <div class="ui large feed">
+            {{> messageItem message=messageSaid showImage=false}}
+        </div>
     {{/if}}
 </template>

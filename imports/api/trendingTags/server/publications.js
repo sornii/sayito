@@ -15,7 +15,7 @@ Meteor.publishComposite('ranking', function ({thread, password}) {
                     threadFound = Threads.findOne({password, name: thread});
                 }
                 if (!threadFound) {
-                    throw new Meteor.Error('invalid.password', 'Invalid thread or password');
+                    throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
                 }
             }
 

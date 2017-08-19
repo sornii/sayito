@@ -16,7 +16,7 @@ Meteor.publishComposite('messages', function ({limit, name, password}) {
                     threadFound = Threads.findOne({password, name});
                 }
                 if (!threadFound) {
-                    throw new Meteor.Error('invalid.password', 'Invalid thread or password');
+                    throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
                 }
             }
 
@@ -38,7 +38,7 @@ Meteor.publishComposite('messages', function ({limit, name, password}) {
     }
 });
 
-Meteor.publishComposite('messagesByTag', function ({limit, tag, thread, password}) {
+Meteor.publishComposite('messagesByTag', function ({limit, tag, name, password}) {
     return {
         find() {
             const hashtag = '#' + tag;
@@ -46,12 +46,12 @@ Meteor.publishComposite('messagesByTag', function ({limit, tag, thread, password
 
             let threadFound = null;
 
-            if (thread || password) {
-                if (thread && password) {
-                    threadFound = Threads.findOne({password, name: thread});
+            if (name || password) {
+                if (name && password) {
+                    threadFound = Threads.findOne({password, name});
                 }
                 if (!threadFound) {
-                    throw new Meteor.Error('invalid.password', 'Invalid thread or password');
+                    throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
                 }
             }
 
@@ -81,7 +81,7 @@ Meteor.publishComposite('messagesByTag', function ({limit, tag, thread, password
     };
 });
 
-Meteor.publishComposite('messagesByIds', function ({ids, thread, password}) {
+Meteor.publishComposite('messagesByIds', function ({hashs, thread, password}) {
     return {
         find() {
             let threadFound = null;
@@ -91,11 +91,11 @@ Meteor.publishComposite('messagesByIds', function ({ids, thread, password}) {
                     threadFound = Threads.findOne({password, name: thread});
                 }
                 if (!threadFound) {
-                    throw new Meteor.Error('invalid.password', 'Invalid thread or password');
+                    throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
                 }
             }
 
-            const predicate = {_id: {$in: ids}, thread: null};
+            const predicate = {hash: {$in: hashs}, thread: null};
 
             if (threadFound) {
                 predicate.thread = threadFound._id;

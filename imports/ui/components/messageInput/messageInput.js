@@ -46,7 +46,7 @@ Template.messageInput.events({
         const $sayitoInputLabel = $('#sayito-input-label');
         try {
             const params = {
-                name: Session.get('name'),
+                thread: Session.get('name'),
                 password: Session.get('password')
             };
             messageInsert.call({text, ...params});

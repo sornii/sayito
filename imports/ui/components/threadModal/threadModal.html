@@ -1,6 +1,5 @@
 <template name="threadModal">
     <div id="thread-modal" class="ui small modal">
-        <i class="close icon"></i>
         <div class="header">
             {{_ 'thread'}}
         </div>
@@ -8,11 +7,11 @@
             <form id="thread-form" class="ui form">
                 <div class="field">
                     <label>{{_ 'name'}}</label>
-                    <input type="text" name="name" placeholder="{{_ 'thread_name'}}">
+                    <input type="text" name="threadName" placeholder="{{_ 'thread_name'}}">
                 </div>
                 <div class="field">
                     <label>{{_ 'password'}}</label>
-                    <input type="text" name="password" placeholder="{{_ 'thread_password'}}">
+                    <input type="password" name="password" placeholder="{{_ 'thread_password'}}">
                 </div>
                 <div class="field">
                     <label>{{_ 'email'}}</label>
@@ -24,7 +23,7 @@
             <div class="ui black deny button">
                 {{_ 'cancel'}}
             </div>
-            <div id="thread-start" class="ui positive right labeled icon approve button thread-start">
+            <div id="thread-start" class="ui right labeled icon positive approve button">
                 {{_ 'start_thread'}}
                 <i class="checkmark icon"></i>
             </div>

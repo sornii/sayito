@@ -2,9 +2,6 @@ import {Template} from "meteor/templating";
 import {FlowRouter} from "meteor/kadira:flow-router";
 import {ActiveRoute} from "meteor/zimme:active-route";
 
-import {_} from "meteor/underscore";
-import {$} from "meteor/jquery";
-
 import {Messages} from "../../../api/messages/messages.js";
 
 import "../../components/messageList/messageList.js";
@@ -14,12 +11,13 @@ import "./said.html";
 
 Template.said.onCreated(function saidOnCreated() {
     this.autorun(() => {
-        this.subscribe('messagesByIds', [FlowRouter.getParam('id')]);
+        const hashs = [FlowRouter.getParam('hash')];
+        this.subscribe('messagesByIds', {hashs});
     });
 });
 
 Template.said.helpers({
     messageSaid () {
-        return Messages.findOne({_id: FlowRouter.getParam('id')});
+        return Messages.findOne({hash: FlowRouter.getParam('hash')});
     }
 });

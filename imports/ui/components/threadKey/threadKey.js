@@ -25,10 +25,14 @@ Template.threadKey.events({
 
         $('#thread-modal')
             .modal({
+                transition: 'fade up',
+                closable: false,
                 detachable: false,
                 onApprove: function () {
                     const threadForm = $('#thread-form');
                     const formValues = threadForm.form('get values');
+                    formValues.name = formValues.threadName;
+                    delete formValues.threadName;
 
                     insertThread.call(formValues, (err, res) => {
                         if (err) {

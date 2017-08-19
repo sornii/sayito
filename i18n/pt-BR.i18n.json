@@ -20,5 +20,8 @@
   "your_email": "Seu e-mail",
   "thread_key_title": "Tópicos",
   "thread_key_content": "Mais anônimo do que nunca. Proteja seus assuntos com senha.",
-  "thread_already_taken": "Nome de tópico já utilizado"
+  "thread_already_taken": "Nome de tópico já utilizado",
+  "enter": "Acessar",
+  "error_header": "Erro",
+  "invalid_information": "O tópico não foi encontrado. Informação inválida"
 }

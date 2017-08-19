@@ -20,5 +20,8 @@
   "your_email": "Your email",
   "thread_key_title": "Threads",
   "thread_key_content": "More anonymous than ever. Protect your subjects with a password.",
-  "thread_already_taken": "Thread's name already taken."
+  "thread_already_taken": "Thread's name already taken.",
+  "enter": "Enter",
+  "error_header": "Error",
+  "invalid_information": "The thread was not found. Invalid information"
 }

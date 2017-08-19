@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import {Template} from "meteor/templating";
 import {Session} from 'meteor/session'
 import {TAPi18n} from "meteor/tap:i18n";
 import {Momentum} from "meteor/percolate:momentum";
@@ -24,4 +25,11 @@ Meteor.startup(function () {
     moment.locale(locale);
 
     Session.set('passwords', ThreadPasswords.retrieveAllPasswords());
+
+    Template.registerHelper('undefinedOr', (first) => {
+        if (typeof first === 'undefined') {
+            return true;
+        }
+        return !!first;
+    });
 });

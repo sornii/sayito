@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "meteor-node-stubs": "~0.2.0",
