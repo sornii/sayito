@@ -5,30 +5,28 @@ import {Tags} from "../../tags/tags";
 
 import {MessagesFilter} from "../filters";
 
-Meteor.publishComposite('messages', function ({limit}) {
+Meteor.publishComposite('messages', function ({limit, thread, password}) {
     return {
         find() {
-            return Messages.find({thread: null}, MessagesFilter.common({limit}));
-        },
-        children: [
-            {
-                find(message) {
-                    return Tags.find({_id: {$in: message.tags}});
+
+            let threadFound = null;
+
+            if (thread || password) {
+                if (thread && password) {
+                    threadFound = Threads.findOne({password, name: thread});
+                }
+                if (!threadFound) {
+                    throw new Meteor.Error('invalid.password', 'Invalid thread or password');
                 }
             }
-        ]
-    };
-});
 
-Meteor.publishComposite('messagesByThread', function ({limit, thread, password}) {
-    return {
-        find() {
-            const threadFound = Threads.findOne({password, name: thread});
+            const predicate = {thread: null};
 
-            if (!threadFound)
-                return null;
+            if (threadFound) {
+                predicate.thread = threadFound._id;
+            }
 
-            return Messages.find({thread: threadFound._id}, MessagesFilter.common({limit}));
+            return Messages.find(predicate, MessagesFilter.common({limit}));
         },
         children: [
             {
@@ -40,21 +38,38 @@ Meteor.publishComposite('messagesByThread', function ({limit, thread, password})
     }
 });
 
-Meteor.publishComposite('messagesByTag', function ({limit, tag}) {
+Meteor.publishComposite('messagesByTag', function ({limit, tag, thread, password}) {
     return {
         find() {
-            const tagText = '#' + tag;
-            const tagFound = Tags.findOne({text: tagText});
+            const hashtag = '#' + tag;
+            const tagDocument = Tags.findOne({text: hashtag});
+
+            let threadFound = null;
+
+            if (thread || password) {
+                if (thread && password) {
+                    threadFound = Threads.findOne({password, name: thread});
+                }
+                if (!threadFound) {
+                    throw new Meteor.Error('invalid.password', 'Invalid thread or password');
+                }
+            }
 
             let tagToBeUsed;
 
-            if (tagFound) {
-                tagToBeUsed = tagFound;
+            if (tagDocument) {
+                tagToBeUsed = tagDocument;
             } else {
-                tagToBeUsed = Tags.insert({text: tagText});
+                tagToBeUsed = Tags.insert({text: hashtag});
             }
 
-            return Messages.find({thread: null, tags: tagToBeUsed._id}, MessagesFilter.common({limit}));
+            const predicate = {thread: null, tags: tagToBeUsed._id};
+            
+            if (threadFound) {
+                predicate.thread = threadFound._id;
+            }
+
+            return Messages.find(predicate, MessagesFilter.common({limit}));
         },
         children: [
             {
@@ -66,10 +81,27 @@ Meteor.publishComposite('messagesByTag', function ({limit, tag}) {
     };
 });
 
-Meteor.publishComposite('messagesByIds', function (ids) {
+Meteor.publishComposite('messagesByIds', function ({ids, thread, password}) {
     return {
         find() {
-            return Messages.find({_id: {$in: ids}, thread: null});
+            let threadFound = null;
+
+            if (thread || password) {
+                if (thread && password) {
+                    threadFound = Threads.findOne({password, name: thread});
+                }
+                if (!threadFound) {
+                    throw new Meteor.Error('invalid.password', 'Invalid thread or password');
+                }
+            }
+
+            const predicate = {_id: {$in: ids}, thread: null};
+
+            if (threadFound) {
+                predicate.thread = threadFound._id;
+            }
+
+            return Messages.find(predicate, MessagesFilter.common());
         },
         children: [
             {

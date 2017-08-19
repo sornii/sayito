@@ -1,3 +1,5 @@
+@import '/node_modules/normalize.css/normalize.css';
+
 @import '/client/colors.less';
 
 @import '/imports/ui/pages/home/home.less';
@@ -7,5 +9,30 @@
 @import '/imports/ui/components/messageList/messageList.less';
 @import '/imports/ui/components/messageThumbsup/messageThumbsup.less';
 @import '/imports/ui/components/sayitoHeader/sayitoHeader.less';
+@import '/imports/ui/components/threadKey/threadKey.less';
 
 @import '../node_modules/font-awesome/less/font-awesome.less';
+
+body, html {
+  background-color: @neutral;
+}
+
+.ui.button.sayito {
+  background-color: @secondary;
+}
+
+.ui.button.sayito:hover, .ui.button.sayito:active, .ui.button.sayito:focus {
+  background-color: @strong-secondary !important;
+}
+
+.ui.segment.sayito {
+  margin-top: -14px;
+}
+
+@media screen and (min-width: 768px) {
+  .sayito.form, .sayito.messages {
+    width: 75% !important;
+    margin-left: 12.5% !important;
+  }
+
+}

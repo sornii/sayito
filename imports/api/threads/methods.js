@@ -15,6 +15,11 @@ export const insert = new ValidatedMethod({
             throw new Meteor.Error('not-authorized');
         }
 
+        const thread = Threads.findOne({name});
+        if (thread) {
+            throw new Meteor.Error('thread.existente', 'Nome de tópico já utilizado');
+        }
+
         const createdAt = new Date();
         return Threads.insert({name, password, creator, createdAt});
     }

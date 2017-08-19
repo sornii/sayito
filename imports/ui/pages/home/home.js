@@ -24,7 +24,7 @@ Template.home.helpers({
     subscriptionNameParams() {
         return {
             name: 'messages',
-            params: { }
+            params: {}
         };
     },
 

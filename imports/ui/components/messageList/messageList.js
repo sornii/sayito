@@ -32,11 +32,7 @@ Template.messageList.onCreated(function messageListOnCreated() {
 
     Tracker.autorun(() => {
         const {name, params} = this.data.subscriptionNameParams;
-        const paramsFinal = {};
-        for(let f in params) {
-            paramsFinal[f] = params[f]();
-        }
-        this.subscribe(name, this.getSubscriptionParams(paramsFinal));
+        this.subscribe(name, this.getSubscriptionParams(params));
     });
 });
 
@@ -56,16 +52,15 @@ Template.messageList.onRendered(function messageListOnRendered() {
 });
 
 Template.messageList.helpers({
-
     messages () {
         const instance = Template.instance();
         return Messages.find({}, MessagesFilter.common({limit: instance.getLimit()}));
     }
-
 });
 
 Template.messageList.events({
     'click .ui.button.more' (event, instance) {
+        event.preventDefault();
         const limit = instance.state.get('limit');
         instance.state.set('limit', limit + 5);
     }

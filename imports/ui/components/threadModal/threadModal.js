@@ -8,14 +8,10 @@ Template.threadModal.onCreated(function () {
 });
 
 Template.threadModal.events({
-    'click #thread-start' () {
-        const threadForm = $('#thread-form');
-        try {
-            insertThread.call(threadForm.form('get values'));
-            threadForm.form('clear');
-        } catch (err) {
-            alert(err);
-        }
+    'click #thread-start' (event) {
+        event.preventDefault();
+
+
     },
 
     'submit #thread-form' (event) {

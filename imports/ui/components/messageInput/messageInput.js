@@ -1,15 +1,17 @@
 import {Template} from "meteor/templating";
+
 import {TrendingTags} from "../../../api/trendingTags/trendingTags.js";
 import {TrendingTagsFilter} from "../../../api/trendingTags/filters.js";
 import {insert as messageInsert} from "../../../api/messages/methods.js";
-import {_} from "meteor/underscore";
-import {$} from "meteor/jquery";
+
+import _ from "underscore";
+import $ from "jquery";
 
 import "./messageInput.html";
 
 Template.messageInput.onCreated(function messageInputOnCreated() {
     this.autorun(() => {
-        this.subscribe('ranking');
+        this.subscribe('ranking', this.data.inputThreadParams);
     });
 });
 

@@ -8,7 +8,8 @@ import '../../ui/layouts/app-body';
 import '../../ui/pages/home/home';
 import '../../ui/pages/said/said';
 import '../../ui/pages/tag/tag';
-import '../../ui/pages/thread/thread'
+import '../../ui/pages/thread/thread';
+import '../../ui/pages/invalid/invalid';
 
 //componentes
 import '../../ui/components/dummy/dummy';
@@ -42,3 +43,14 @@ FlowRouter.route('/thread/:name', {
     name: 'thread',
     action: () => BlazeLayout.render('App_body', {content: 'thread'})
 });
+
+FlowRouter.route('/thread/:name/hashtag/:tag', {
+    name: 'thread_tag',
+    action: () => BlazeLayout.render('App_body', {content: 'tag'})
+});
+
+FlowRouter.notFound = {
+    action() {
+        BlazeLayout.render('invalid', {});
+    }
+};

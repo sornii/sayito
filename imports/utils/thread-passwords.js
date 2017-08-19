@@ -1,5 +1,4 @@
 class ThreadPasswords {
-
     constructor() {
         if (!localStorage.threads) {
             this._threads = {};
@@ -17,6 +16,10 @@ class ThreadPasswords {
         return this._threads[thread];
     }
 
+    retrieveAllPasswords() {
+        return this._threads;
+    }
+
     deleteThread(thread) {
         delete this._threads[thread];
     }
@@ -26,4 +29,4 @@ class ThreadPasswords {
     }
 }
 
-export const threadPasswords = new ThreadPasswords();
+export default new ThreadPasswords();

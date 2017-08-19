@@ -6,5 +6,19 @@
   "zero_messages": "No one got real, be the first!",
   "loading": "Loading",
   "trending": "Trending",
-  "load_more": "Load more"
+  "load_more": "Load more",
+  "slang_invalid": "Ol'boy",
+  "message_invalid": "Failed to find the page, what about this one?",
+  "thread": "Thread",
+  "name": "Name",
+  "password": "Password",
+  "email": "Email",
+  "cancel": "Cancel",
+  "start_thread": "Start thread",
+  "thread_name": "Thread's name",
+  "thread_password": "Thread password",
+  "your_email": "Your email",
+  "thread_key_title": "Threads",
+  "thread_key_content": "More anonymous than ever. Protect your subjects with a password.",
+  "thread_already_taken": "Thread's name already taken."
 }

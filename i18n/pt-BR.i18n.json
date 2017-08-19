@@ -6,5 +6,19 @@
   "zero_messages": "Ninguém mandou uma verdade ainda, seja o primeiro!",
   "loading": "Carregando",
   "trending": "Populares",
-  "load_more": "Carregar mais"
+  "load_more": "Carregar mais",
+  "slang_invalid": "Bah!",
+  "message_invalid": "Falhamos ao encontrar a página, que tal dar uma olhada nesta aqui?",
+  "thread": "Tópico",
+  "name": "Nome",
+  "password": "Senha",
+  "email": "E-mail",
+  "cancel": "Cancelar",
+  "start_thread": "Iniciar tópico",
+  "thread_name": "Nome do tópico",
+  "thread_password": "Senha do tópico",
+  "your_email": "Seu e-mail",
+  "thread_key_title": "Tópicos",
+  "thread_key_content": "Mais anônimo do que nunca. Proteja seus assuntos com senha.",
+  "thread_already_taken": "Nome de tópico já utilizado"
 }

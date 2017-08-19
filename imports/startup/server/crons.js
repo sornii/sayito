@@ -2,6 +2,8 @@ import {SyncedCron} from "meteor/percolate:synced-cron";
 import {Messages} from "../../api/messages/messages.js";
 import {TrendingTags} from "../../api/trendingTags/trendingTags.js";
 
+import _ from 'underscore';
+
 const RANK_UP_HASHTAG_CRON_NAME = "Cron to rank up the hashtags";
 
 SyncedCron.config({
@@ -19,7 +21,7 @@ SyncedCron.add({
 });
 
 SyncedCron.add({
-    name: 'Cron to rank up the hashtags',
+    name: RANK_UP_HASHTAG_CRON_NAME,
     schedule: function (parser) {
         return parser.text('every 5 seconds');
     },
@@ -39,7 +41,10 @@ SyncedCron.add({
             .slice(0, 10)
             .value();
 
-        TrendingTags.remove({rank: {$gt: tagsCounted.length}});
+        if (tagsCounted.length !== 0) {
+            TrendingTags.remove({tag: {$in: _.map(tagsCounted, tagsCounted => tagsCounted.tag)}});
+            TrendingTags.update({}, {$inc: {rank: tagsCounted.length}}, {multi: true});
+        }
 
         tagsCounted.forEach((tagCounted, index) => {
             const found = TrendingTags.findOne({rank: index});

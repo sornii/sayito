@@ -17,6 +17,11 @@ export const TrendingTagsSchema = new SimpleSchema({
     tag: {
         type: String,
         regEx: SimpleSchema.RegEx.Id
+    },
+    threadId: {
+        type: String,
+        regEx: SimpleSchema.RegEx.Id,
+        optional: true
     }
 });
 

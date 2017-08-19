@@ -6,7 +6,7 @@ import {_} from 'meteor/underscore';
 import {$} from 'meteor/jquery';
 
 import {Threads} from '../../../api/threads/threads';
-import {threadPasswords} from '../../../utils/thread-passwords';
+import ThreadPasswords from '../../../utils/thread-passwords';
 
 import '../../components/messageInput/messageInput';
 import '../../components/messageList/messageList';
@@ -36,13 +36,13 @@ Template.thread.onCreated(function threadOnCreated() {
 
     this.getParams = () => {
         return {
-            thread: instance.getNameParam,
-            password: instance.getPasswordState
+            thread: instance.getNameParam(),
+            password: instance.getPasswordState()
         };
     };
 
     Tracker.autorun(() => {
-        this.setPasswordState(threadPasswords.retrievePassword(this.getNameParam()));
+        this.setPasswordState(ThreadPasswords.retrievePassword(this.getNameParam()));
     });
 
     Tracker.autorun(() => {
@@ -72,7 +72,7 @@ Template.thread.helpers({
         const instance = Template.instance();
 
         return (password) => {
-            threadPasswords.savePassword(instance.getNameParam(), password);
+            ThreadPasswords.savePassword(instance.getNameParam(), password);
             instance.setPasswordState(password);
         }
     },
@@ -86,7 +86,7 @@ Template.thread.helpers({
         const instance = Template.instance();
 
         return {
-            name: 'messagesByThread',
+            name: 'messages',
             params: {
                 ... instance.getParams()
             },
