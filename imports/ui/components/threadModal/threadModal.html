@@ -1,45 +1,45 @@
 <template name="threadModal">
-    <div id="thread-modal" class="ui small modal">
-        <div class="header">
-            {{_ 'thread'}}
-        </div>
-        <div class="content">
-            {{#if hasErrors}}
-                <div class="ui small error message">
-                    <i class="close icon"></i>
-                    <div class="header">
-                        {{_ 'error_header'}}
-                    </div>
-                    <ul class="list">
-                        {{#each error in errors}}
-                            <li>{{error.message}}</li>
-                        {{/each}}
-                    </ul>
-                </div>
-            {{/if}}
-            <form id="thread-form" class="ui form">
-                <div class="field">
-                    <label>{{_ 'name'}}</label>
-                    <input type="text" name="threadName" placeholder="{{_ 'thread_name'}}">
-                </div>
-                <div class="field">
-                    <label>{{_ 'password'}}</label>
-                    <input type="password" name="password" placeholder="{{_ 'thread_password'}}">
-                </div>
-                <div class="field">
-                    <label>{{_ 'email'}}</label>
-                    <input type="email" name="creator" placeholder="{{_ 'your_email'}}">
-                </div>
-            </form>
-        </div>
-        <div class="actions">
-            <div class="ui deny button">
-                {{_ 'cancel'}}
-            </div>
-            <div id="thread-start" class="ui right labeled icon positive approve button {{approveButtonClass}}">
-                {{_ 'start_thread'}}
-                <i class="checkmark icon"></i>
-            </div>
-        </div>
+  <div id="thread-modal" class="ui small modal">
+    <div class="header">
+      {{_ 'thread'}}
     </div>
+    <div class="content">
+      {{#if hasErrors}}
+        <div class="ui small error message">
+          <i class="close icon"></i>
+          <div class="header">
+            {{_ 'error_header'}}
+          </div>
+          <ul class="list">
+            {{#each error in errors}}
+              <li>{{error.message}}</li>
+            {{/each}}
+          </ul>
+        </div>
+      {{/if}}
+      <form id="thread-form" class="ui form">
+        <div class="field">
+          <label>{{_ 'name'}}</label>
+          <input type="text" name="threadName" placeholder="{{_ 'thread_name'}}">
+        </div>
+        <div class="field">
+          <label>{{_ 'password'}}</label>
+          <input type="password" name="password" placeholder="{{_ 'thread_password'}}">
+        </div>
+        <div class="field">
+          <label>{{_ 'email'}}</label>
+          <input type="email" name="creator" placeholder="{{_ 'your_email'}}">
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <div class="ui deny button">
+        {{_ 'cancel'}}
+      </div>
+      <div id="thread-start" class="ui right labeled icon positive approve button {{approveButtonClass}}">
+        {{_ 'start_thread'}}
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
 </template>

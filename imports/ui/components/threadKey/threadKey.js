@@ -22,14 +22,14 @@ Template.threadKey.events({
     event.preventDefault();
 
     $('#thread-modal')
-      .modal({
-        transition: 'fade up',
-        closable: false,
-        detachable: false,
-        onApprove() {
-          return false;
-        },
-      })
-      .modal('show');
+    .modal({
+      transition: 'fade up',
+      closable: false,
+      detachable: false,
+      onApprove() {
+        return false;
+      },
+    })
+    .modal('show');
   },
 });

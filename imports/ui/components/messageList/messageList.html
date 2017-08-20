@@ -1,10 +1,10 @@
 <template name="messageList">
-    <div class="ui feed sayito messages">
-        {{#each message in messages}}
-            {{> messageItem message=message}}
-        {{/each}}
-    </div>
-    <span>
-        {{_ 'loading'}}
-    </span>
+  <div class="ui feed sayito messages">
+    {{#each message in messages}}
+      {{> messageItem message=message}}
+    {{/each}}
+  </div>
+  <span>
+    {{_ 'loading'}}
+  </span>
 </template>

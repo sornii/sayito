@@ -1,26 +1,26 @@
 <template name="messageItem">
-    <div class="event">
-        {{#if undefinedOr showImage}}
-            <div class="label">
-                <img src="http://api.adorable.io/avatars/35/{{message.hash}}.png" alt="avatar">
-            </div>
-        {{/if}}
-        <div class="content">
-            <div class="summary">
-                <a style="font-weight: 300">
-                    {{{message.link}}}
-                </a>
-                <div class="date">
-                    {{howLong}}
-                </div>
-            </div>
-
-            <div class="extra text">
-                {{{message.formattedText}}}
-            </div>
-            <div class="meta">
-                {{> messageThumbsup}}
-            </div>
+  <div class="event">
+    {{#if undefinedOr showImage}}
+      <div class="label">
+        <img src="http://api.adorable.io/avatars/35/{{message.hash}}.png" alt="avatar">
+      </div>
+    {{/if}}
+    <div class="content">
+      <div class="summary">
+        <a style="font-weight: 300">
+          {{{message.link}}}
+        </a>
+        <div class="date">
+          {{howLong}}
         </div>
+      </div>
+
+      <div class="extra text">
+        {{{message.formattedText}}}
+      </div>
+      <div class="meta">
+        {{> messageThumbsup}}
+      </div>
     </div>
+  </div>
 </template>
