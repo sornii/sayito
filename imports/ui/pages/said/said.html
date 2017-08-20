@@ -1,7 +1,7 @@
 <template name="said">
     {{#if messageSaid}}
         <img class="ui centered circular small image"
-             src="http://api.adorable.io/avatar/200/{{messageSaid.hash}}.png" alt="avatar">
+             src="http://api.adorable.io/avatars/200/{{messageSaid.hash}}.png" alt="avatar">
         <div class="ui large feed">
             {{> messageItem message=messageSaid showImage=false}}
         </div>

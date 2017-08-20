@@ -3,8 +3,6 @@ import {Template} from "meteor/templating";
 import './threadKey.html';
 import '../threadModal/threadModal';
 
-import {insert as insertThread} from '../../../api/threads/methods';
-
 import $ from 'jquery';
 
 Template.threadModal.onRendered(function () {
@@ -29,20 +27,7 @@ Template.threadKey.events({
                 closable: false,
                 detachable: false,
                 onApprove: function () {
-                    const threadForm = $('#thread-form');
-                    const formValues = threadForm.form('get values');
-                    formValues.name = formValues.threadName;
-                    delete formValues.threadName;
-
-                    insertThread.call(formValues, (err, res) => {
-                        if (err) {
-                            //TODO: show errors on modal
-                        } else {
-                            FlowRouter.go('thread', {name: formValues.name});
-                        }
-                    });
-
-                    return false;
+                  return false;
                 }
             })
             .modal('show');

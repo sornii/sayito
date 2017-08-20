@@ -4,6 +4,19 @@
             {{_ 'thread'}}
         </div>
         <div class="content">
+            {{#if hasErrors}}
+                <div class="ui small error message">
+                    <i class="close icon"></i>
+                    <div class="header">
+                        {{_ 'error_header'}}
+                    </div>
+                    <ul class="list">
+                        {{#each error in errors}}
+                            <li>{{error.message}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/if}}
             <form id="thread-form" class="ui form">
                 <div class="field">
                     <label>{{_ 'name'}}</label>
@@ -20,10 +33,10 @@
             </form>
         </div>
         <div class="actions">
-            <div class="ui black deny button">
+            <div class="ui deny button">
                 {{_ 'cancel'}}
             </div>
-            <div id="thread-start" class="ui right labeled icon positive approve button">
+            <div id="thread-start" class="ui right labeled icon positive approve button {{approveButtonClass}}">
                 {{_ 'start_thread'}}
                 <i class="checkmark icon"></i>
             </div>

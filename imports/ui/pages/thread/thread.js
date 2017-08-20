@@ -50,8 +50,7 @@ Template.thread.onRendered(function threadOnRendered() {
     if (Session.get('password') === undefined ||
         (this.subscriptionsReady() && Threads.find({}).count() === 0)) {
 
-        const $passwordThreadModal = $('#password-thread-modal');
-        $passwordThreadModal
+        $('#password-thread-modal')
             .modal({
                 transition: 'fade up',
                 closable: false,

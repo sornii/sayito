@@ -21,7 +21,7 @@ Template.threadPassword.onCreated(function () {
 Template.threadPassword.helpers({
     approveButtonClass() {
         const instance = Template.instance();
-        return instance.state.get("loading");
+        return instance.state.get("loading") ? 'loading' : '';
     },
     hasErrors() {
         const instance = Template.instance();
@@ -48,7 +48,6 @@ Template.threadPassword.events({
             if (err) {
                 instance.state.set("loading", false);
                 instance.state.set("error", true);
-                console.log(TAPi18n);
                 instance.errors.set([{message: TAPi18n.__(err.error)}]);
             } else {
                 Session.set('password', password);

@@ -16,7 +16,6 @@ export const ThreadSchema = new SimpleSchema({
     },
     name: {
         type: String,
-        label: 'Text',
         max: 20
     },
     password: {
