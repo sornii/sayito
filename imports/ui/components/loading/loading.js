@@ -1,1 +1,1 @@
-import "./loading.html";
+import './loading.html';

@@ -1,14 +1,13 @@
-import {_} from "meteor/underscore";
+import _ from 'underscore';
 
-const commonFilter = {limit: 5, sort: {createdAt: -1}};
+const commonFilter = { limit: 5, sort: { createdAt: -1 } };
 
 export class MessagesFilter {
+  constructor() {
+    throw new Error('Use the static methods');
+  }
 
-    constructor() {
-        throw new Error('Use the static methods');
-    }
-
-    static common(options) {
-        return _.extend({}, commonFilter, options);
-    }
+  static common(options) {
+    return _.extend({}, commonFilter, options);
+  }
 }

@@ -1,4 +1,4 @@
-import './crons.js';
-import './fixtures.js';
-import './api.js';
-import './annon.js';
+import './crons';
+import './fixtures';
+import './api';
+import './annon';

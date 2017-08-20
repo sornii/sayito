@@ -1,15 +1,14 @@
-import {Random} from 'meteor/random';
+import { Random } from 'meteor/random';
 
-const annonLocation = "annonId";
+const annonLocation = 'annonId';
 
 export default {
-    annonId () {
-        if (localStorage.annonId) {
-            return localStorage.getItem(annonLocation);
-        } else {
-            const annonId = Random.id();
-            localStorage.setItem(annonLocation, annonId);
-            return annonId
-        }
+  annonId() {
+    if (localStorage.annonId) {
+      return localStorage.getItem(annonLocation);
     }
-}
+    const annonId = Random.id();
+    localStorage.setItem(annonLocation, annonId);
+    return annonId;
+  },
+};
