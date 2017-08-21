@@ -3,7 +3,7 @@ import { Messages } from '../messages';
 import { Threads } from '../../threads/threads';
 import { Tags } from '../../tags/tags';
 
-import { MessagesFilter } from '../filters';
+import MessagesFilter from '../filters';
 
 Meteor.publishComposite('messages', ({ limit, name, password }) => ({
   find() {
