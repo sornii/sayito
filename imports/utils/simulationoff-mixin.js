@@ -1,6 +1,6 @@
-export const SimulationOffMixin = function (methodOptions) {
+export const SimulationOffMixin = function simulationOffMixinConfiguration(methodOptions) {
   const runFunc = methodOptions.run;
-  methodOptions.run = function () {
+  methodOptions.run = function simulationOffMixinRun() {
     if (this.isSimulation) {
       return;
     }
