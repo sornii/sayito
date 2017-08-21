@@ -1,7 +1,9 @@
+import { Template } from 'meteor/templating';
+// FIXME: Use npm package manager to moment
+import { moment } from 'meteor/momentjs:moment';
+
 import '../messageThumbsup/messageThumbsup';
 import './messageItem.html';
-import { Template } from 'meteor/templating';
-import { moment } from 'meteor/momentjs:moment';
 
 Template.messageItem.onCreated(function messageItemOnCreated() {
   const howLong = 'howLong';

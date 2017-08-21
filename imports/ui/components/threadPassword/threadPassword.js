@@ -11,7 +11,7 @@ import { verify } from '../../../api/threads/methods';
 
 import './threadPassword.html';
 
-Template.threadPassword.onCreated(function () {
+Template.threadPassword.onCreated(function threadPasswordOnCreated() {
   this.errors = new ReactiveVar();
   this.state = new ReactiveDict();
   this.state.set('loading', false);
@@ -34,7 +34,7 @@ Template.threadPassword.helpers({
 });
 
 Template.threadPassword.events({
-  'click .approve.button, submit .ui.form': function (event, instance) {
+  'click .approve.button, submit .ui.form': function setThreadPassword(event, instance) {
     event.preventDefault();
 
     instance.state.set('loading', true);
@@ -48,7 +48,6 @@ Template.threadPassword.events({
       if (err) {
         instance.state.set('loading', false);
         instance.state.set('error', true);
-        cons;
         instance.errors.set([{ message: TAPi18n.__(err.error) }]);
       } else {
         Session.set('password', password);
@@ -58,7 +57,7 @@ Template.threadPassword.events({
       }
     });
   },
-  'click .error.message>.close.icon': function (event, instance) {
+  'click .error.message>.close.icon': function closeErrorMessages(event, instance) {
     event.preventDefault();
     instance.state.set('error', false);
   },

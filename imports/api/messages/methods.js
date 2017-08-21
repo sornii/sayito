@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { TAPi18n } from 'meteor/tap:i18n';
+
 import { Messages } from './messages';
 import { Tags } from '../tags/tags';
 import { Threads } from '../threads/threads';
@@ -36,7 +37,7 @@ export const insert = new ValidatedMethod({
       match = regex.exec(text);
     }
 
-    if (tags.length == 0) {
+    if (tags.length === 0) {
       throw new Meteor.Error('messages.insert.hasNoTags', TAPi18n.__('messages_no_tags'));
     }
 
@@ -67,7 +68,7 @@ export const hasThumbsup = new ValidatedMethod({
       throw new Meteor.Error('not-authorized');
     }
 
-    return Messages.find({ _id: id, thumbsup: this.userId }, { limit: 1 }).count() == 1;
+    return Messages.find({ _id: id, thumbsup: this.userId }, { limit: 1 }).count() === 1;
   },
 });
 

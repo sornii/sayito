@@ -1,6 +1,16 @@
 {
-  "extends": "airbnb-base",
+  "plugins": ["meteor"],
+  "extends": [
+    "airbnb-base",
+    "plugin:meteor/recommended"
+  ],
   "env": {
-    "meteor": true
+    "meteor": true,
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "meteor/no-session": [0],
+    "meteor/prefer-session-equals": [2]
   }
 }

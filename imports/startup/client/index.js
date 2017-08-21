@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { TAPi18n } from 'meteor/tap:i18n';
-import { Momentum } from 'meteor/percolate:momentum';
+// FIXME: Use moment from npm package manager
 import { moment } from 'meteor/momentjs:moment';
 
 import AnnonUtil from './annon-util';

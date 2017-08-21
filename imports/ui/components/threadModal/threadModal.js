@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { TAPi18n } from 'meteor/tap:i18n';
@@ -32,7 +33,7 @@ Template.threadModal.helpers({
 });
 
 Template.threadModal.events({
-  'click .approve.button, submit .ui.form': function (event, instance) {
+  'click .approve.button, submit .ui.form': function createThread(event, instance) {
     event.preventDefault();
 
     if ($('.approve.button.loading').length !== 0) {
@@ -56,7 +57,7 @@ Template.threadModal.events({
       }
     });
   },
-  'click .error.message>.close.icon': function (event, instance) {
+  'click .error.message>.close.icon': function closeErrorMessages(event, instance) {
     event.preventDefault();
     instance.state.set('error', false);
   },

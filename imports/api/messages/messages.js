@@ -1,6 +1,5 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { CryptoJS } from 'meteor/jparker:crypto-md5';
 
 import { Tags } from '../tags/tags';
 

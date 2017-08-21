@@ -18,7 +18,7 @@ Template.threadModal.onRendered(() => {
 });
 
 Template.threadKey.events({
-  'click button': function (event) {
+  'click button': function openThreadModal(event) {
     event.preventDefault();
 
     $('#thread-modal')

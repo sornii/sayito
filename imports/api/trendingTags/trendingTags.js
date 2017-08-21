@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Tags } from '../tags/tags.js';
+
+import { Tags } from '../tags/tags';
 
 export const TrendingTags = new Mongo.Collection('TrendingTags');
 

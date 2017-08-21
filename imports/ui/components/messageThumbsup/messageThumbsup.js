@@ -1,5 +1,5 @@
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+
 import { hasThumbsup, removeThumbsup, thumbsup } from '../../../api/messages/methods';
 
 import './messageThumbsup.html';
@@ -17,7 +17,7 @@ Template.messageThumbsup.helpers({
 });
 
 Template.messageThumbsup.events({
-  'click .thumbs.up': function (event) {
+  'click .thumbs.up': function thumbsUpMessage(event) {
     event.preventDefault();
 
     const id = this.message._id;

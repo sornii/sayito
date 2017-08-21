@@ -2,7 +2,9 @@
   "name": "sayito",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "lint": "eslint .",
+    "test": "npm run lint"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
@@ -15,6 +17,7 @@
   "devDependencies": {
     "eslint": "^4.3.0",
     "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-meteor": "3.0.1",
     "eslint-plugin-import": "^2.7.0"
   }
 }
