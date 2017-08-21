@@ -9,7 +9,7 @@ import { insert as insertThread } from '../../../api/threads/methods';
 
 import './threadModal.html';
 
-Template.threadModal.onCreated(function () {
+Template.threadModal.onCreated(function threadModalOnCreated() {
   this.errors = new ReactiveVar();
   this.state = new ReactiveDict();
   this.state.set('loading', false);
@@ -55,5 +55,9 @@ Template.threadModal.events({
         FlowRouter.go('thread', { name: formValues.name });
       }
     });
+  },
+  'click .error.message>.close.icon': function (event, instance) {
+    event.preventDefault();
+    instance.state.set('error', false);
   },
 });

@@ -25,14 +25,14 @@ Template.messageList.onRendered(function messageListOnRendered() {
   const instance = this;
 
   $('.ui.feed.sayito.messages')
-  .visibility({
-    once: false,
-    initialCheck: false,
-    // observeChanges: true,
-    onBottomVisible() {
-      instance.increaseLimit();
-    },
-  });
+    .visibility({
+      once: false,
+      initialCheck: false,
+      // observeChanges: true,
+      onBottomVisible() {
+        instance.increaseLimit();
+      },
+    });
 });
 
 Template.messageList.helpers({

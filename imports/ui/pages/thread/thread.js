@@ -48,18 +48,18 @@ Template.thread.onRendered(function threadOnRendered() {
   if (Session.get('password') === undefined ||
     (this.subscriptionsReady() && Threads.find({}).count() === 0)) {
     $('#password-thread-modal')
-    .modal({
-      transition: 'fade up',
-      closable: false,
-      detachable: false,
-      onDeny() {
-        FlowRouter.go('home');
-      },
-      onApprove() {
-        return false;
-      },
-    })
-    .modal('show');
+      .modal({
+        transition: 'fade up',
+        closable: false,
+        detachable: false,
+        onDeny() {
+          FlowRouter.go('home');
+        },
+        onApprove() {
+          return false;
+        },
+      })
+      .modal('show');
   }
 });
 

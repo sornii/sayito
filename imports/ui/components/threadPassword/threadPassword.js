@@ -48,6 +48,7 @@ Template.threadPassword.events({
       if (err) {
         instance.state.set('loading', false);
         instance.state.set('error', true);
+        cons;
         instance.errors.set([{ message: TAPi18n.__(err.error) }]);
       } else {
         Session.set('password', password);
