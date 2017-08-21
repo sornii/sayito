@@ -1,8 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { ActiveRoute } from 'meteor/zimme:active-route';
 
 import $ from 'jquery';
 
