@@ -7,7 +7,7 @@ import { ActiveRoute } from 'meteor/zimme:active-route';
 import $ from 'jquery';
 
 import { Messages } from '../../../api/messages/messages';
-import { MessagesFilter } from '../../../api/messages/filters';
+import MessagesFilter from '../../../api/messages/filters';
 
 import '../../components/dummy/dummy';
 import './messageList.html';
