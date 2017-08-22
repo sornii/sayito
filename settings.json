@@ -1,0 +1,17 @@
+{
+  "public": {
+    "analyticsSettings": {
+      "Google Analytics" : {"trackingId": "UA-105076680-1"},
+      "Amplitude"        : {"apiKey": "..."},
+      "Chartbeat"        : {"uid": "..."},
+      "comScore"         : {"c2": "..."},
+      "HubSpot"          : {"portalId": "..."},
+      "Intercom"         : {"appId": "..."},
+      "Keen IO"          : {"projectId": "...", "writeKey": "..."},
+      "KISSmetrics"      : {"apiKey": "..."},
+      "Mixpanel"         : {"token":  "...", "people": true},
+      "Quantcast"        : {"pCode": "..."},
+      "Segment.io"       : {"apiKey": "..."}
+    }
+  }
+}
