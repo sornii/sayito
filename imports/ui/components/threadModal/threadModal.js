@@ -54,6 +54,8 @@ Template.threadModal.events({
         FlowRouter.go('thread', { name: formValues.name });
       }
     });
+
+    return undefined;
   },
   'click .error.message>.close.icon': function closeErrorMessages(event, instance) {
     event.preventDefault();

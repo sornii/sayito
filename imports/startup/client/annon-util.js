@@ -1,3 +1,5 @@
+/** global: localStorage */
+
 import { Random } from 'meteor/random';
 
 const annonLocation = 'annonId';
