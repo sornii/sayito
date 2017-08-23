@@ -1,2 +1,2 @@
-/.meteor/**
-/cliente/lib/**
+.meteor/**
+client/lib/**
