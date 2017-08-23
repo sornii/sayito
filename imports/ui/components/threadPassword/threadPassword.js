@@ -44,7 +44,7 @@ Template.threadPassword.events({
     const name = Session.get('name');
     const password = $threadForm.form('get values').password;
 
-    verify.call({ name, password }, (err, res) => {
+    verify.call({ name, password }, (err) => {
       if (err) {
         instance.state.set('loading', false);
         instance.state.set('error', true);

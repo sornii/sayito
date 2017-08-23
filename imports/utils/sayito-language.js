@@ -1,3 +1,5 @@
+/** global: localStorage */
+
 class SayitoLanguage {
   constructor() {
     if (localStorage.language) {

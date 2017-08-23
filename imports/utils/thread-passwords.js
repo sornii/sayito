@@ -1,3 +1,5 @@
+/** global: localStorage */
+
 class ThreadPasswords {
   constructor() {
     if (!localStorage.threads) {

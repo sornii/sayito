@@ -75,7 +75,7 @@ Meteor.publishComposite('messagesByTag', ({ limit, tag, name, password }) => ({
 
 Meteor.publishComposite('messagesByIds', ({ hashs, thread, password }) => ({
   find() {
-    const threadFound = checkThread(name, password);
+    const threadFound = checkThread(thread, password);
 
     const predicate = { hash: { $in: hashs }, thread: null };
 

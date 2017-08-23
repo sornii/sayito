@@ -1,5 +1,7 @@
 import { check, Match } from 'meteor/check';
 
+import _ from 'underscore';
+
 export const LoggedInMixin = function loggedInMixinConfiguration(methodOptions) {
   check(methodOptions.checkLoggedInError, Match.ObjectIncluding({
     error: String,
