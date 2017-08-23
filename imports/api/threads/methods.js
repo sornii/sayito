@@ -1,5 +1,5 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import SimpleSchema from 'simpl-schema';
 
 import { LoggedInMixin } from '../../utils/loggedin-mixin';
 import { SimulationOffMixin } from '../../utils/simulationoff-mixin';

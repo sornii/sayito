@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import SimpleSchema from 'simpl-schema';
 
 export const Threads = new Mongo.Collection('Threads');
 
@@ -17,6 +17,8 @@ export const ThreadSchema = new SimpleSchema({
   name: {
     type: String,
     max: 20,
+    index: true,
+    unique: true,
   },
   password: {
     type: String,

@@ -46,7 +46,7 @@ Template.threadModal.events({
     formValues.name = formValues.threadName;
     delete formValues.threadName;
 
-    insertThread.call(formValues, (err, res) => {
+    insertThread.call(formValues, (err) => {
       if (err) {
         instance.state.set('loading', false);
         instance.state.set('error', true);

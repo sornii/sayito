@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import SimpleSchema from 'simpl-schema';
 
 import { Tags } from '../tags/tags';
 
@@ -24,13 +24,20 @@ const MessageSchema = new SimpleSchema({
     max: 140,
   },
   tags: {
-    type: [String],
+    type: Array,
+    regEx: SimpleSchema.RegEx.Id,
+  },
+  'tags.$': {
+    type: String,
     regEx: SimpleSchema.RegEx.Id,
   },
   thumbsup: {
-    type: [String],
-    regEx: SimpleSchema.RegEx.Id,
+    type: Array,
     optional: true,
+  },
+  'thumbsup.$': {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
   },
   hash: {
     type: String,

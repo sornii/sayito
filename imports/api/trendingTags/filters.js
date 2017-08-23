@@ -4,7 +4,7 @@ const commonFilter = {
   limit: 10, sort: { rank: 1 },
 };
 
-export class TrendingTagsFilter {
+export default class TrendingTagsFilter {
   constructor() {
     throw new Error('Use the static methods');
   }

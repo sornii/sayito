@@ -3,8 +3,9 @@ import { Session } from 'meteor/session';
 
 import $ from 'jquery';
 
+import TrendingTagsFilter from '../../../api/trendingTags/filters';
+
 import { TrendingTags } from '../../../api/trendingTags/trendingTags';
-import { TrendingTagsFilter } from '../../../api/trendingTags/filters';
 import { insert as messageInsert } from '../../../api/messages/methods';
 
 import './messageInput.html';
@@ -34,7 +35,7 @@ Template.messageInput.helpers({
 
 Template.messageInput.events({
 
-  'submit .sayito.form': function sendMessage(event, instance) {
+  'submit .sayito.form': function sendMessage(event) {
     event.preventDefault();
 
     const $sayitoForm = $('.sayito-input');

@@ -3,7 +3,7 @@ import { TrendingTags } from '../trendingTags';
 import { Tags } from '../../tags/tags';
 import { Threads } from '../../threads/threads';
 
-import { TrendingTagsFilter } from '../filters';
+import TrendingTagsFilter from '../filters';
 
 Meteor.publishComposite('ranking', ({ thread, password }) => ({
   find() {
