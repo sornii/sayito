@@ -5,18 +5,24 @@ import { Tags } from '../../tags/tags';
 
 import MessagesFilter from '../filters';
 
+function checkThread(name, password) {
+  let threadFound = null;
+
+  if (name || password) {
+    if (name && password) {
+      threadFound = Threads.findOne({ password, name });
+    }
+    if (!threadFound) {
+      throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
+    }
+  }
+
+  return threadFound;
+}
+
 Meteor.publishComposite('messages', ({ limit, name, password }) => ({
   find() {
-    let threadFound = null;
-
-    if (name || password) {
-      if (name && password) {
-        threadFound = Threads.findOne({ password, name });
-      }
-      if (!threadFound) {
-        throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
-      }
-    }
+    const threadFound = checkThread(name, password);
 
     const predicate = { thread: null };
 
@@ -40,16 +46,7 @@ Meteor.publishComposite('messagesByTag', ({ limit, tag, name, password }) => ({
     const hashtag = `#${tag}`;
     const tagDocument = Tags.findOne({ text: hashtag });
 
-    let threadFound = null;
-
-    if (name || password) {
-      if (name && password) {
-        threadFound = Threads.findOne({ password, name });
-      }
-      if (!threadFound) {
-        throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
-      }
-    }
+    const threadFound = checkThread(name, password);
 
     let tagToBeUsed;
 
@@ -78,16 +75,7 @@ Meteor.publishComposite('messagesByTag', ({ limit, tag, name, password }) => ({
 
 Meteor.publishComposite('messagesByIds', ({ hashs, thread, password }) => ({
   find() {
-    let threadFound = null;
-
-    if (thread || password) {
-      if (thread && password) {
-        threadFound = Threads.findOne({ password, name: thread });
-      }
-      if (!threadFound) {
-        throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
-      }
-    }
+    const threadFound = checkThread(name, password);
 
     const predicate = { hash: { $in: hashs }, thread: null };
 
