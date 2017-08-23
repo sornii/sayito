@@ -1,0 +1,24 @@
+plugins: 
+ - import
+ - meteor
+extends: 
+ - "airbnb-base"
+ - "plugin:meteor/recommended"
+env:
+ meteor: true
+ browser: true
+ node: true
+rules: 
+ "meteor/no-session": 
+  - 0
+ "meteor/prefer-session-equals": 
+  - 2
+ "meteor/eventmap-params": 
+  - 2
+  - 
+   eventParamName: event
+   templateInstanceParamName: instance
+settings: 
+ "import/core-modules": 
+  - meteor
+ "import/resolver": meteor
