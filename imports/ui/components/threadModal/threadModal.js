@@ -4,8 +4,6 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { TAPi18n } from 'meteor/tap:i18n';
 
-import $ from 'jquery';
-
 import { insert as insertThread } from '../../../api/threads/methods';
 
 import './threadModal.html';
@@ -15,6 +13,19 @@ Template.threadModal.onCreated(function threadModalOnCreated() {
   this.state = new ReactiveDict();
   this.state.set('loading', false);
   this.state.set('error', false);
+
+  this.insertThread = (obj) => {
+    insertThread.call(obj, (err) => {
+      if (err) {
+        this.state.set('loading', false);
+        this.state.set('error', true);
+        this.errors.set([{ message: TAPi18n.__(err.error) }]);
+      } else {
+        this.state.set('loading', false);
+        FlowRouter.go('thread', { name: obj.name });
+      }
+    });
+  };
 });
 
 Template.threadModal.helpers({
@@ -36,24 +47,12 @@ Template.threadModal.events({
   'click .approve.button, submit .ui.form': function createThread(event, instance) {
     event.preventDefault();
 
-    if ($('.approve.button.loading').length !== 0) {
+    if (instance.$('.approve.button.loading').length !== 0) {
       return false;
     }
 
     instance.state.set('loading', true);
-
-    const formValues = $('#thread-form').form('get values');
-
-    insertThread.call(formValues, (err) => {
-      if (err) {
-        instance.state.set('loading', false);
-        instance.state.set('error', true);
-        instance.errors.set([{ message: TAPi18n.__(err.error) }]);
-      } else {
-        instance.state.set('loading', false);
-        FlowRouter.go('thread', { name: formValues.name });
-      }
-    });
+    instance.insertThread(instance.$('#thread-form').form('get values'));
 
     return undefined;
   },
