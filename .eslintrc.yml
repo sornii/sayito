@@ -20,4 +20,5 @@ rules:
   -
    "eventParamName": "event"
    "templateInstanceParamName": "instance"
-
+globals:
+ CryptoJS: true
