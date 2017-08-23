@@ -5,7 +5,7 @@ import { TAPi18n } from 'meteor/tap:i18n';
 
 import { Messages } from './messages';
 import { Tags } from '../tags/tags';
-import { Threads } from '../threads/threads';
+import { findChecked as findThreadChecked } from '../threads/methods';
 
 export const insert = new ValidatedMethod({
   name: 'messages.insert',
@@ -41,12 +41,7 @@ export const insert = new ValidatedMethod({
       throw new Meteor.Error('messages.insert.hasNoTags', TAPi18n.__('messages_no_tags'));
     }
 
-    let threadFound = null;
-
-    if (thread || password) {
-      if (thread && password) { threadFound = Threads.findOne({ password, name: thread }); }
-      if (!threadFound) { throw new Meteor.Error('messages.insert.invalidThread', TAPi18n.__('messages_invalid_thread')); }
-    }
+    const threadFound = findThreadChecked(thread, password);
 
     const date = new Date();
     const hash = CryptoJS.MD5(date.getTime().toString()).toString();

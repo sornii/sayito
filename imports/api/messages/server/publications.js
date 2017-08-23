@@ -1,28 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { Messages } from '../messages';
-import { Threads } from '../../threads/threads';
+import { findChecked as findThreadChecked } from '../../threads/methods';
 import { Tags } from '../../tags/tags';
 
 import MessagesFilter from '../filters';
 
-function checkThread(name, password) {
-  let threadFound = null;
-
-  if (name || password) {
-    if (name && password) {
-      threadFound = Threads.findOne({ password, name });
-    }
-    if (!threadFound) {
-      throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
-    }
-  }
-
-  return threadFound;
-}
-
 Meteor.publishComposite('messages', ({ limit, name, password }) => ({
   find() {
-    const threadFound = checkThread(name, password);
+    const threadFound = findThreadChecked(name, password);
 
     const predicate = { thread: null };
 
@@ -46,7 +31,7 @@ Meteor.publishComposite('messagesByTag', ({ limit, tag, name, password }) => ({
     const hashtag = `#${tag}`;
     const tagDocument = Tags.findOne({ text: hashtag });
 
-    const threadFound = checkThread(name, password);
+    const threadFound = findThreadChecked(name, password);
 
     let tagToBeUsed;
 
@@ -75,7 +60,7 @@ Meteor.publishComposite('messagesByTag', ({ limit, tag, name, password }) => ({
 
 Meteor.publishComposite('messagesByIds', ({ hashs, thread, password }) => ({
   find() {
-    const threadFound = checkThread(thread, password);
+    const threadFound = findThreadChecked(thread, password);
 
     const predicate = { hash: { $in: hashs }, thread: null };
 

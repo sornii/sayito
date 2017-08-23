@@ -7,6 +7,21 @@ import { SimulationOffMixin } from '../../utils/simulationoff-mixin';
 
 import { Threads } from './threads';
 
+export function findChecked(name, password) {
+  let threadFound = null;
+
+  if (name || password) {
+    if (name && password) {
+      threadFound = Threads.findOne({ password, name });
+    }
+    if (!threadFound) {
+      throw new Meteor.Error('invalid_information', 'The thread was not found. Invalid information');
+    }
+  }
+
+  return threadFound;
+}
+
 export const insert = new ValidatedMethod({
   name: 'threads.insert',
   mixins: [LoggedInMixin],
