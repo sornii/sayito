@@ -1,8 +1,9 @@
 import { SyncedCron } from 'meteor/percolate:synced-cron';
-import { Messages } from '../../api/messages/messages.js';
-import { TrendingTags } from '../../api/trendingTags/trendingTags.js';
 
 import _ from 'underscore';
+
+import { Messages } from '../../api/messages/messages.js';
+import { TrendingTags } from '../../api/trendingTags/trendingTags.js';
 
 const RANK_UP_HASHTAG_CRON_NAME = 'Cron to rank up the hashtags';
 

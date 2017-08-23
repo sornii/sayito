@@ -25,5 +25,6 @@
   "thread_already_taken": "Nome de tópico já utilizado",
   "enter": "Acessar",
   "error_header": "Erro",
-  "invalid_information": "O tópico não foi encontrado. Informação inválida"
+  "invalid_information": "O tópico não foi encontrado. Informação inválida",
+  "name_taken": "Não é possível criar um tópico com o nome escolhido"
 }

@@ -20,7 +20,7 @@ export const insert = new ValidatedMethod({
   run({ name, password, creator }) {
     const thread = Threads.findOne({ name });
     if (thread) {
-      throw new Meteor.Error('name.taken', 'Name already taken');
+      throw new Meteor.Error('name_taken', 'Name already taken');
     }
 
     const createdAt = new Date();

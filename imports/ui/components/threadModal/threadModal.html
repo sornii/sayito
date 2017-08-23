@@ -11,8 +11,8 @@
             {{_ 'error_header'}}
           </div>
           <ul class="list">
-            {{#each error in errors}}
-              <li>{{error.message}}</li>
+            {{#each errors}}
+              <li>{{message}}</li>
             {{/each}}
           </ul>
         </div>
@@ -20,7 +20,7 @@
       <form id="thread-form" class="ui form">
         <div class="field">
           <label>{{_ 'name'}}</label>
-          <input name="threadName" placeholder="{{_ 'thread_name'}}">
+          <input name="name" placeholder="{{_ 'thread_name'}}">
         </div>
         <div class="field">
           <label>{{_ 'password'}}</label>

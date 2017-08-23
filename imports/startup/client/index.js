@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import AnnonUtil from './annon-util';
 import ThreadPasswords from '../../utils/thread-passwords';
+import SayitoLanguage from '../../utils/sayito-language';
 
 import './routes';
 import './annon';
@@ -18,12 +19,8 @@ Meteor.startup(() => {
 
   Meteor.loginAsAnnon(annonId);
 
-  const locale = window.navigator.userLanguage ||
-    window.navigator.language ||
-    window.navigator.systemLanguage;
-
-  TAPi18n.setLanguage(locale);
-  moment.locale(locale);
+  TAPi18n.setLanguage(SayitoLanguage.retrieveLanguage());
+  moment.locale(SayitoLanguage.retrieveLanguage());
 
   Session.set('passwords', ThreadPasswords.retrieveAllPasswords());
 
@@ -32,5 +29,9 @@ Meteor.startup(() => {
       return true;
     }
     return !!first;
+  });
+
+  Template.registerHelper('stringify', (first) => {
+    return JSON.stringify(first);
   });
 });

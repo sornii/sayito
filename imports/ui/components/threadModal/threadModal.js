@@ -43,8 +43,6 @@ Template.threadModal.events({
     instance.state.set('loading', true);
 
     const formValues = $('#thread-form').form('get values');
-    formValues.name = formValues.threadName;
-    delete formValues.threadName;
 
     insertThread.call(formValues, (err) => {
       if (err) {

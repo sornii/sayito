@@ -25,5 +25,6 @@
   "thread_already_taken": "Thread's name already taken.",
   "enter": "Enter",
   "error_header": "Error",
-  "invalid_information": "The thread was not found. Invalid information"
+  "invalid_information": "The thread was not found. Invalid information",
+  "name_taken": "Ins't possible to create a thread with the chosen name"
 }

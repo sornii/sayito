@@ -3,7 +3,7 @@ class ThreadPasswords {
     if (!localStorage.threads) {
       this._threads = {};
     } else {
-      this._threads = JSON.parse(localStorage.threads);
+      this.loadFromStorage();
     }
   }
 
@@ -22,6 +22,10 @@ class ThreadPasswords {
 
   deleteThread(thread) {
     delete this._threads[thread];
+  }
+
+  loadFromStorage() {
+    this._threads = JSON.parse(localStorage.threads);
   }
 
   saveToStorage() {
