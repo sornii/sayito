@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
-// FIXME: Use npm package manager to moment
-import { moment } from 'meteor/momentjs:moment';
+
+import moment from 'moment';
 
 import '../messageThumbsup/messageThumbsup';
 import './messageItem.html';
