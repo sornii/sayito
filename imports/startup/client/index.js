@@ -11,6 +11,8 @@ import ThreadPasswords from '../../utils/thread-passwords';
 import './routes';
 import './annon';
 
+import '../../../node_modules/semantic-ui-css/semantic.min';
+
 Meteor.startup(() => {
   const annonId = AnnonUtil.annonId();
 
