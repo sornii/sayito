@@ -11,3 +11,5 @@ ratings:
   - "server/**"
 exclude_paths:
 - "client/lib/**"
+- ".meteor/**"
+- "node_modules/**"
