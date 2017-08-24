@@ -43,7 +43,7 @@ SyncedCron.add({
       .value();
 
     if (tagsCounted.length !== 0) {
-      TrendingTags.remove({ tag: { $in: _.map(tagsCounted, tagsCounted => tagsCounted.tag) } });
+      TrendingTags.remove({ tag: { $in: _.map(tagsCounted, tagCounted => tagCounted.tag) } });
       TrendingTags.update({}, { $inc: { rank: tagsCounted.length } }, { multi: true });
     }
 
