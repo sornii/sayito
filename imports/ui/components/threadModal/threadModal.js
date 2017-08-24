@@ -24,7 +24,7 @@ Template.threadModal.onCreated(function threadModalOnCreated() {
   };
 });
 
-Template.threadModal.helpers({ ...AttachableHelpers.formHelpers });
+Template.threadModal.helpers({ ...AttachableHelpers.modalStateHelpers });
 
 Template.threadModal.events({
   'click .approve.button, submit .ui.form': function createThread(event, instance) {
