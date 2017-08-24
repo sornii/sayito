@@ -31,7 +31,5 @@ Meteor.startup(() => {
     return !!first;
   });
 
-  Template.registerHelper('stringify', (first) => {
-    return JSON.stringify(first);
-  });
+  Template.registerHelper('stringify', first => JSON.stringify(first));
 });
