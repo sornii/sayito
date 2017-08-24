@@ -10,11 +10,11 @@ export const LoggedInMixin = function loggedInMixinConfiguration(methodOptions) 
     reason: Match.Optional(String),
   }));
   const runFunc = methodOptions.run;
-  methodOptions.run = function loggedInMixinRun() {
+  methodOptions.run = function loggedInMixinRun(...args) {
     if (!this.userId) {
       throw new Meteor.Error(..._.values(methodOptions.checkLoggedInError));
     }
-    return runFunc.call(this, ...arguments);
+    return runFunc.call(this, ...args);
   };
   return methodOptions;
 };
