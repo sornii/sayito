@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { ReactiveDict } from 'meteor/reactive-dict';
 import { TAPi18n } from 'meteor/tap:i18n';
 
 import $ from 'jquery';
