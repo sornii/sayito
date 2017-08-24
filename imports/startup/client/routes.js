@@ -19,8 +19,6 @@ import '../../ui/components/threadKey/threadKey';
 import '../../ui/components/threadModal/threadModal';
 import '../../ui/components/threadPassword/threadPassword';
 
-import 'meteor/percolate:momentum';
-
 FlowRouter.route('/', {
   name: 'home',
   action: () => BlazeLayout.render('App_body', { content: 'home' }),
