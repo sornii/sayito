@@ -1,28 +1,34 @@
 import { Meteor } from 'meteor/meteor';
+
 import { Messages } from '../messages';
 import { findChecked as findThreadChecked } from '../../threads/methods';
 import { Tags } from '../../tags/tags';
 
 import MessagesFilter from '../filters';
 
+const defaultPredicate = (threadFound) => {
+  const predicate = { thread: null };
+  if (threadFound) {
+    predicate.thread = threadFound._id;
+  }
+  return predicate;
+};
+
+const tagsChild = {
+  find(message) {
+    return Tags.find({ _id: { $in: message.tags } });
+  },
+};
+
 Meteor.publishComposite('messages', ({ limit, name, password }) => ({
   find() {
     const threadFound = findThreadChecked(name, password);
-
-    const predicate = { thread: null };
-
-    if (threadFound) {
-      predicate.thread = threadFound._id;
-    }
+    const predicate = defaultPredicate(threadFound);
 
     return Messages.find(predicate, MessagesFilter.common({ limit }));
   },
   children: [
-    {
-      find(message) {
-        return Tags.find({ _id: { $in: message.tags } });
-      },
-    },
+    tagsChild,
   ],
 }));
 
@@ -41,40 +47,21 @@ Meteor.publishComposite('messagesByTag', ({ limit, tag, name, password }) => ({
       tagToBeUsed = Tags.insert({ text: hashtag });
     }
 
-    const predicate = { thread: null, tags: tagToBeUsed._id };
-
-    if (threadFound) {
-      predicate.thread = threadFound._id;
-    }
-
+    const predicate = { ...defaultPredicate(threadFound), tags: tagToBeUsed._id };
     return Messages.find(predicate, MessagesFilter.common({ limit }));
   },
   children: [
-    {
-      find(message) {
-        return Tags.find({ _id: { $in: message.tags } });
-      },
-    },
+    tagsChild,
   ],
 }));
 
 Meteor.publishComposite('messagesByIds', ({ hashs, thread, password }) => ({
   find() {
     const threadFound = findThreadChecked(thread, password);
-
-    const predicate = { hash: { $in: hashs }, thread: null };
-
-    if (threadFound) {
-      predicate.thread = threadFound._id;
-    }
-
+    const predicate = { ...defaultPredicate(threadFound), hash: { $in: hashs } };
     return Messages.find(predicate, MessagesFilter.common());
   },
   children: [
-    {
-      find(message) {
-        return Tags.find({ _id: { $in: message.tags } });
-      },
-    },
+    tagsChild,
   ],
 }));
