@@ -4,3 +4,10 @@ engines:
     checks:
       import/no-absolute-path:
         enabled: false
+ratings:
+  paths:
+  - "imports/**"
+  - "client/*"
+  - "server/**"
+exclude_paths:
+- "client/lib/**"
