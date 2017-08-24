@@ -1,9 +1,6 @@
 engines:
   eslint:
     enabled: true
-    checks:
-      import/no-absolute-path:
-        enabled: false
 ratings:
   paths:
   - "imports/**"
@@ -13,3 +10,5 @@ exclude_paths:
 - "client/lib/**"
 - ".meteor/**"
 - "node_modules/**"
+- "public/**"
+- "i18n/**"
