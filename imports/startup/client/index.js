@@ -3,6 +3,7 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { TAPi18n } from 'meteor/tap:i18n';
 
+import rg4js from 'raygun4js';
 import moment from 'moment';
 
 import AnnonUtil from './annon-util';
@@ -13,6 +14,9 @@ import './routes';
 import './annon';
 
 Meteor.startup(() => {
+  rg4js('enableCrashReporting', true);
+  rg4js('apiKey', 'Sah7EBMKsi8rNnTMEmiJjA==');
+
   const annonId = AnnonUtil.annonId();
 
   Meteor.loginAsAnnon(annonId);
