@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
+import { getParam, getPath, isRoutePassword } from '../../utils/route-utils';
 import { Tags } from '../tags/tags';
 
 export const Messages = new Mongo.Collection('Messages');
@@ -68,7 +69,15 @@ Messages.helpers({
     return finalText;
   },
   link() {
-    return `<a href="/said/${this.hash}">${this.hash}</a>`;
+    let path;
+    const hash = this.hash;
+    if (isRoutePassword()) {
+      const thread = getParam('thread');
+      path = getPath('thread.said', { thread, hash });
+    } else {
+      path = getPath('said', { hash });
+    }
+    return `<a href="${path}">${this.hash}</a>`;
   },
 });
 

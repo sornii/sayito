@@ -20,9 +20,9 @@ const tagsChild = {
   },
 };
 
-Meteor.publishComposite('messages', ({ limit, name, password }) => ({
+Meteor.publishComposite('messages', ({ limit, thread, password }) => ({
   find() {
-    const threadFound = findThreadChecked(name, password);
+    const threadFound = findThreadChecked(thread, password);
     const predicate = defaultPredicate(threadFound);
 
     return Messages.find(predicate, MessagesFilter.common({ limit }));
@@ -32,12 +32,12 @@ Meteor.publishComposite('messages', ({ limit, name, password }) => ({
   ],
 }));
 
-Meteor.publishComposite('messagesByTag', ({ limit, tag, name, password }) => ({
+Meteor.publishComposite('messagesByTag', ({ limit, tag, thread, password }) => ({
   find() {
     const hashtag = `#${tag}`;
     const tagDocument = Tags.findOne({ text: hashtag });
 
-    const threadFound = findThreadChecked(name, password);
+    const threadFound = findThreadChecked(thread, password);
 
     let tagToBeUsed;
 

@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { Tracker } from 'meteor/tracker';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import $ from 'jquery';
@@ -15,16 +14,16 @@ import '../../components/threadPassword/threadPassword';
 import './thread.html';
 
 Template.thread.onCreated(function threadOnCreated() {
-  const name = FlowRouter.getParam('name');
+  const thread = FlowRouter.getParam('thread');
 
-  Session.set('name', name);
-  Session.set('password', ThreadPasswords.retrievePassword(name));
+  Session.set('name', thread);
+  Session.set('password', ThreadPasswords.retrievePassword(thread));
 
   this.autorun(() => {
     const password = Session.get('password');
     const limit = Session.get('limit');
 
-    this.subscribe('messages', { limit, name, password });
+    this.subscribe('messages', { limit, thread, password });
     this.subscribe('threads', { name, password });
   });
 });

@@ -60,20 +60,18 @@ export const insert = new ValidatedMethod({
 
 export const hasThumbsup = new ValidatedMethod({
   name: 'messages.hasThumbsup',
+  mixins: [LoggedInMixin],
   validate: new SimpleSchema({
     id: { type: String, regEx: SimpleSchema.RegEx.Id },
   }).validator(),
   run({ id }) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-
     return Messages.find({ _id: id, thumbsup: this.userId }, { limit: 1 }).count() === 1;
   },
 });
 
 export const thumbsup = new ValidatedMethod({
   name: 'messages.thumbsup',
+  mixins: [LoggedInMixin],
   validate: new SimpleSchema({
     id: { type: String, regEx: SimpleSchema.RegEx.Id },
   }).validator(),
@@ -97,6 +95,7 @@ export const thumbsup = new ValidatedMethod({
 
 export const removeThumbsup = new ValidatedMethod({
   name: 'messages.removeThumbsup',
+  mixins: [LoggedInMixin],
   validate: new SimpleSchema({
     id: { type: String },
   }).validator(),
@@ -114,3 +113,4 @@ export const removeThumbsup = new ValidatedMethod({
     });
   },
 });
+

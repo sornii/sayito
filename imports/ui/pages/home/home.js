@@ -10,10 +10,10 @@ import './home.html';
 
 Template.home.onCreated(function homeOnCreated() {
   this.autorun(() => {
-    const name = Session.get('name');
+    const thread = Session.get('name');
     const password = Session.get('password');
     const limit = Session.get('limit');
-    this.subscribe('messages', { limit, name, password });
+    this.subscribe('messages', { limit, thread, password });
   });
 });
 

@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+import { getParam, getPath, isRoutePassword } from '../../utils/route-utils';
 import SimpleSchema from 'simpl-schema';
 
 export const Tags = new Mongo.Collection('Tags');
@@ -19,8 +20,15 @@ export const TagSchema = new SimpleSchema({
 
 Tags.helpers({
   link(classes) {
-    const param = this.text.substring(1, this.text.length);
-    return `<a class="${classes}" href="/hashtag/${param}">${this.text}</a>`;
+    const tag = this.text.substring(1, this.text.length);
+    let path;
+    if (isRoutePassword()) {
+      const thread = getParam('thread');
+      path = getPath('thread.tag', { thread, tag });
+    } else {
+      path = getPath('tag', { tag });
+    }
+    return `<a class="${classes}" href="${path}">${this.text}</a>`;
   },
 });
 

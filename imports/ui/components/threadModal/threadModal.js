@@ -17,7 +17,7 @@ Template.threadModal.onCreated(function threadModalOnCreated() {
         this.modalState.setErrorState([{ message: TAPi18n.__(err.error) }]);
       } else {
         this.modalState.initialState();
-        FlowRouter.go('thread', { name: obj.name });
+        FlowRouter.go('thread', { thread: obj.name });
       }
     });
   };

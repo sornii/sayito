@@ -34,14 +34,19 @@ FlowRouter.route('/said/:hash', {
   action: () => BlazeLayout.render('App_body', { content: 'said' }),
 });
 
-FlowRouter.route('/thread/:name', {
+FlowRouter.route('/thread/:thread', {
   name: 'thread',
   action: () => BlazeLayout.render('App_body', { content: 'thread' }),
 });
 
-FlowRouter.route('/thread/:name/hashtag/:tag', {
-  name: 'thread_tag',
+FlowRouter.route('/thread/:thread/hashtag/:tag', {
+  name: 'thread.tag',
   action: () => BlazeLayout.render('App_body', { content: 'tag' }),
+});
+
+FlowRouter.route('/thread/:thread/said/:hash', {
+  name: 'thread.said',
+  action: () => BlazeLayout.render('App_body', { content: 'said' }),
 });
 
 FlowRouter.notFound = {
