@@ -15,7 +15,4 @@ cache:
 
 before_script:
   - meteor npm install
-  - npm run bump
 
-after_success:
-  - git push
