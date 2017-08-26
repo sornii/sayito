@@ -16,8 +16,14 @@
       {{/if}}
       {{> messageItem message=message}}
     {{/each}}
+    {{#if noMessages}}
+      <div class="ui info message">
+        <i class="close icon"></i>
+        <div class="header">
+          {{_ 'zero_messages_header'}}
+        </div>
+        <p>{{_ 'zero_messages'}}</p>
+      </div>
+    {{/if}}
   </div>
-  <span>
-    {{_ 'loading'}}
-  </span>
 </template>

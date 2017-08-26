@@ -1,3 +1,4 @@
+import 'newrelic';
 import './raygun';
 import './crons';
 import './fixtures';

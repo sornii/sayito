@@ -33,6 +33,9 @@ Template.messageList.onRendered(function messageListOnRendered() {
 });
 
 Template.messageList.helpers({
+  noMessages() {
+    return Messages.find({}).count() === 0;
+  },
   messages() {
     return Messages.find({}, MessagesFilter.common({ limit: Session.get('limit') }));
   },

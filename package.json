@@ -21,6 +21,7 @@
     "jquery": "^3.2.1",
     "meteor-node-stubs": "~0.2.0",
     "moment": "^2.18.1",
+    "newrelic": "^2.2.0",
     "raygun": "^0.9.1",
     "raygun4js": "^2.7.2-SNAPSHOT",
     "simpl-schema": "^0.3.2",
