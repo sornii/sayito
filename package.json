@@ -1,6 +1,6 @@
 {
   "name": "Sayito",
-  "version": "0.6",
+  "version": "0.6.0",
   "description": "Say it, anonymously, to anyone.",
   "homepage": "https://github.com/Sornii/sayito",
   "author": {
@@ -21,6 +21,7 @@
     "jquery": "^3.2.1",
     "meteor-node-stubs": "~0.2.0",
     "moment": "^2.18.1",
+    "raygun": "^0.9.1",
     "raygun4js": "^2.7.2-SNAPSHOT",
     "simpl-schema": "^0.3.2",
     "underscore": "^1.8.3"
