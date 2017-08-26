@@ -24,7 +24,6 @@ percolate:momentum
 dburles:collection-helpers
 reywood:publish-composite
 tap:i18n
-meteorhacks:kadira
 zimme:active-route
 gwendall:simple-schema-i18n
 shell-server@0.2.4

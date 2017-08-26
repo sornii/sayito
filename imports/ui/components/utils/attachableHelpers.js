@@ -3,15 +3,15 @@ import { Template } from 'meteor/templating';
 const modalStateHelpers = {
   approveButtonClass() {
     const instance = Template.instance();
-    return instance.modalState.get('loading') ? 'loading' : '';
+    return instance.modalState.isLoading();
   },
   hasErrors() {
     const instance = Template.instance();
-    return instance.modalState.get('error');
+    return instance.modalState.isError();
   },
   errors() {
     const instance = Template.instance();
-    return instance.modalState.get('errors');
+    return instance.modalState.getErrors();
   },
 };
 

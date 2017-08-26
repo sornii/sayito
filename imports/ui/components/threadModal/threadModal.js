@@ -9,15 +9,14 @@ import { insert as insertThread } from '../../../api/threads/methods';
 import './threadModal.html';
 
 Template.threadModal.onCreated(function threadModalOnCreated() {
-  this.modalState = new ModalState(this);
-  this.modalState.initialStates();
+  this.modalState = new ModalState();
 
   this.insertThread = (obj) => {
     insertThread.call(obj, (err) => {
       if (err) {
-        this.modalState.createErrors([{ message: TAPi18n.__(err.error) }]);
+        this.modalState.setErrorState([{ message: TAPi18n.__(err.error) }]);
       } else {
-        this.modalState.initialStates();
+        this.modalState.initialState();
         FlowRouter.go('thread', { name: obj.name });
       }
     });
@@ -34,13 +33,13 @@ Template.threadModal.events({
       return false;
     }
 
-    instance.state.set('loading', true);
+    instance.modalState.setLoadingState();
     instance.insertThread(instance.$('#thread-form').form('get values'));
 
     return undefined;
   },
   'click .error.message>.close.icon': function closeErrorMessages(event, instance) {
     event.preventDefault();
-    instance.modalState.initialStates();
+    instance.modalState.initialState();
   },
 });

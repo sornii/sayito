@@ -1,20 +1,40 @@
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-export default class ModalState {
-  constructor(instance) {
-    this.instance = instance;
+class ModalState extends ReactiveDict {
+  constructor() {
+    super();
+    this.initialState();
   }
 
-  initialStates() {
-    this.instance.modalState = new ReactiveDict();
-    this.instance.modalState.set('loading', false);
-    this.instance.modalState.set('error', false);
-    this.instance.modalState.set('errors', undefined);
+  initialState() {
+    this.set(ModalState.loading, false);
+    this.set(ModalState.errors, undefined);
   }
 
-  createErrors(errors) {
-    this.instance.modalState.set('loading', false);
-    this.instance.modalState.set('error', true);
-    this.instance.modalState.set('errors', errors);
+  getErrors() {
+    return this.get(ModalState.errors);
+  }
+
+  isLoading() {
+    return this.get(ModalState.loading);
+  }
+
+  isError() {
+    return this.get(ModalState.errors) !== undefined;
+  }
+
+  setLoadingState() {
+    this.set(ModalState.loading, true);
+    this.set(ModalState.errors, undefined);
+  }
+
+  setErrorState(errors) {
+    this.set(ModalState.loading, false);
+    this.set(ModalState.errors, errors);
   }
 }
+
+ModalState.loading = 0;
+ModalState.errors = 1;
+
+export default ModalState;

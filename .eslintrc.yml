@@ -11,6 +11,7 @@ env:
 settings:
  import/resolver: meteor
 rules:
+ "prefer-arrow-callback": "off"
  "meteor/no-session": "off"
  "import/extensions": "off"
  "import/no-extraneous-dependencies": "off"

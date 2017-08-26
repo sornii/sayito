@@ -20,26 +20,16 @@ Template.thread.onCreated(function threadOnCreated() {
   Session.set('name', name);
   Session.set('password', ThreadPasswords.retrievePassword(name));
 
-  Tracker.autorun((comm) => {
+  this.autorun(() => {
     const password = Session.get('password');
     const limit = Session.get('limit');
 
     this.subscribe('messages', { limit, name, password });
     this.subscribe('threads', { name, password });
-
-    this.comm = comm;
   });
 });
 
 Template.thread.onDestroyed(function threadOnDestroyed() {
-  /*
-   It's needed to stop trackers before updating reactive values to prevent
-   execution on the destroy lifetime.
-
-   this onDestroyed runs at the same time with onCreated.
-   */
-  this.comm.stop();
-
   Session.set('name', undefined);
   Session.set('password', undefined);
 });

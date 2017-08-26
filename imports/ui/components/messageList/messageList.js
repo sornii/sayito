@@ -37,7 +37,7 @@ Template.messageList.helpers({
     return Messages.find({}, MessagesFilter.common({ limit: Session.get('limit') }));
   },
   showAdsense(index) {
-    return index !== 0 && index % 3 === 0;
+    return index !== 0 && index % 5 === 0;
   },
 });
 

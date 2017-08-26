@@ -12,8 +12,7 @@ import { verify } from '../../../api/threads/methods';
 import './threadPassword.html';
 
 Template.threadPassword.onCreated(function threadPasswordOnCreated() {
-  this.modalState = new ModalState(this);
-  this.modalState.initialStates();
+  this.modalState = new ModalState();
 });
 
 Template.threadPassword.helpers({ ...AttachableHelpers.modalStateHelpers });
@@ -22,7 +21,7 @@ Template.threadPassword.events({
   'click .approve.button, submit .ui.form': function setThreadPassword(event, instance) {
     event.preventDefault();
 
-    instance.state.set('loading', true);
+    instance.modalState.setLoadingState();
 
     const $threadForm = $('#password-thread-modal');
 
@@ -31,17 +30,17 @@ Template.threadPassword.events({
 
     verify.call({ name, password }, (err) => {
       if (err) {
-        instance.modalStates.createErrors([{ message: TAPi18n.__(err.error) }]);
+        instance.modalState.setErrorState([{ message: TAPi18n.__(err.error) }]);
       } else {
         Session.set('password', password);
         ThreadPasswords.savePassword(name, password);
-        instance.modalState.initialStates();
+        instance.modalState.initialState();
         $threadForm.modal('hide');
       }
     });
   },
   'click .error.message>.close.icon': function closeErrorMessages(event, instance) {
     event.preventDefault();
-    instance.modalState.initialStates();
+    instance.modalState.initialState();
   },
 });

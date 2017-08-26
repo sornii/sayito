@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { Tracker } from 'meteor/tracker';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import '../../components/messageInput/messageInput';
@@ -10,12 +9,8 @@ import '../../components/dummy/dummy';
 
 import './tag.html';
 
-Template.tag.onRendered(() => {
-
-});
-
 Template.tag.onCreated(function tagOnCreated() {
-  Tracker.autorun(() => {
+  this.autorun(() => {
     const tag = FlowRouter.getParam('tag');
     const name = Session.get('name');
     const password = Session.get('password');
@@ -23,5 +18,3 @@ Template.tag.onCreated(function tagOnCreated() {
     this.subscribe('messagesByTag', { limit, tag, name, password });
   });
 });
-
-Template.tag.helpers({});
