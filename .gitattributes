@@ -1,3 +1,8 @@
 *.js eol=lf
 *.html eol=lf
 *.less eol=lf
+*.yml eol=lf
+*.json eol=lf
+.gitignore eol=lf
+.gitattributes eol=lf
+.eslintignore eol=lf

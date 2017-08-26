@@ -3,6 +3,7 @@ sudo: false
 language: node_js
 
 before_install:
+  - npm run bump
   - curl https://install.meteor.com | /bin/sh
   - export PATH="$HOME/.meteor:$PATH"
 
